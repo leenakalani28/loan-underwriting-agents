@@ -23,6 +23,8 @@ class LoanTerms(BaseModel):
     financial_covenants: Optional[str] = Field(None, description="Covenant text, or null if none agreed")
     kyc_complete: Optional[bool] = Field(None, description="True only if KYC checks are complete")
     audited_accounts_provided: Optional[bool] = None
+    guarantee_details: Optional[str] = Field(None, description="Who gives the guarantee and any limit, e.g. 'Sarah Mitchell, limited to £300,000'. Null if no guarantee.")
+    collateral_description: Optional[str] = Field(None, description="What the security is and its ranking, e.g. 'First legal charge over freehold factory, Bristol'")
 
 
 # ---------- Agent 3: Compliance checker ----------

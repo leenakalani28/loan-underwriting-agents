@@ -29,6 +29,7 @@ PROMPT = ChatPromptTemplate.from_messages([
      "'None offered' or 'Not applicable' means false.\n"
      "- financial_covenants is null if covenants are not yet agreed (e.g. 'To be agreed').\n"
      "- kyc_complete is true only if KYC is stated as complete; 'In progress' means false.\n"
+     "- guarantee_details must state exactly who gives the guarantee and any limit or cap on it.\n"
      "{retry_note}"),
     ("human", "Application document:\n{document}"),
 ])

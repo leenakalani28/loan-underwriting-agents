@@ -18,6 +18,7 @@ class DealState(TypedDict):
     human_decision: Optional[dict]
 
     # Orchestration
+    next_step: Optional[str]
     extraction_retries: int
     audit_log: Annotated[list, operator.add]
 
