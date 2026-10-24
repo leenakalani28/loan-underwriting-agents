@@ -1,4 +1,5 @@
 import operator
+from datetime import datetime
 from typing import TypedDict, Optional, Annotated
 
 
@@ -19,3 +20,12 @@ class DealState(TypedDict):
     # Orchestration
     extraction_retries: int
     audit_log: Annotated[list, operator.add]
+
+
+def log_entry(agent: str, message: str) -> dict:
+    """One line for the audit log: when, which agent, what it did."""
+    return {
+        "time": datetime.now().strftime("%H:%M:%S"),
+        "agent": agent,
+        "message": message,
+    }
