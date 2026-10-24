@@ -1,0 +1,22 @@
+{
+  "policy_name": "SME Secured Lending Policy v1.0",
+  "required_sections": [
+    "BORROWER DETAILS",
+    "LOAN TERMS",
+    "COLLATERAL",
+    "FINANCIALS",
+    "KYC AND DOCUMENTATION"
+  ],
+  "excluded_sectors": ["gambling", "weapons", "adult entertainment", "cryptocurrency"],
+  "rules": [
+    {"id": "R1", "description": "Loan-to-value must not exceed 75%", "field": "ltv_percent", "operator": "<=", "threshold": 75, "severity": "high"},
+    {"id": "R2", "description": "Debt service coverage ratio must be at least 1.25x", "field": "dscr", "operator": ">=", "threshold": 1.25, "severity": "high"},
+    {"id": "R3", "description": "Tenor must not exceed 10 years", "field": "tenor_years", "operator": "<=", "threshold": 10, "severity": "medium"},
+    {"id": "R4", "description": "Personal guarantee required for loans above £1,000,000", "field": "personal_guarantee", "operator": "required_if_amount_above", "threshold": 1000000, "severity": "medium"},
+    {"id": "R5", "description": "Borrower must have at least 2 years of trading history", "field": "years_trading", "operator": ">=", "threshold": 2, "severity": "high"},
+    {"id": "R6", "description": "Net debt/EBITDA must not exceed 3.5x", "field": "net_debt_to_ebitda", "operator": "<=", "threshold": 3.5, "severity": "medium"},
+    {"id": "R7", "description": "Financial covenants must be agreed and documented", "field": "financial_covenants", "operator": "present", "severity": "medium"},
+    {"id": "R8", "description": "KYC must be complete and audited accounts provided", "field": "kyc_complete", "operator": "is_true", "severity": "high"},
+    {"id": "R9", "description": "Borrower sector must not be on the excluded list", "field": "sector", "operator": "not_in_excluded", "severity": "high"}
+  ]
+}

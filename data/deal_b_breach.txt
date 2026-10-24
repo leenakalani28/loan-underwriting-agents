@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0187
+
+1. BORROWER DETAILS
+Borrower: Greenway Leisure Group Ltd
+Company number: 11987654
+Sector: Hospitality (boutique hotels)
+Years trading: 4
+Directors: Daniel Reeves (CEO)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £2,400,000
+Purpose: Acquisition of a 24-room hotel in Harrogate
+Tenor: 8 years
+Interest rate: SONIA + 4.10%
+Repayment: Monthly capital and interest
+Personal guarantee: None offered
+Financial covenants: Minimum DSCR of 1.20x tested annually
+
+3. COLLATERAL
+Security: First legal charge over the acquired hotel property
+Independent valuation: £2,925,000 (Savills, July 2026)
+Loan-to-value: 82.1%
+
+4. FINANCIALS
+Turnover (FY2025): £3,100,000
+EBITDA (FY2025): £610,000
+Cash flow available for debt service: £448,500
+Annual debt service (proposed facility): £390,000
+Debt service coverage ratio: 1.15x
+Net debt/EBITDA after drawdown: 4.6x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, director verified
+Audited accounts: Provided for FY2024, FY2025
+Management accounts: Provided to August 2026
