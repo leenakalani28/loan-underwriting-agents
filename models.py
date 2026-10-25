@@ -24,8 +24,8 @@ class LoanTerms(BaseModel):
     kyc_complete: Optional[bool] = Field(None, description="True only if KYC checks are complete")
     audited_accounts_provided: Optional[bool] = None
     guarantee_details: Optional[str] = Field(None, description="Who gives the guarantee and any limit, e.g. 'Sarah Mitchell, limited to £300,000'. Null if no guarantee.")
-    collateral_description: Optional[str] = Field(None, description="What the security is and its ranking, e.g. 'First legal charge over freehold factory, Bristol'")
-
+    collateral_description: Optional[str] = Field(None, description="What the security is and its ranking, e.g. 'First legal chargeover freehold factory, Bristol'")
+    collateral_valuation: Optional[float] = Field(None, description="Independent valuation of the security in GBP as a plain number, e.g. 1850000")
 
 # ---------- Agent 3: Compliance checker ----------
 class RuleResult(BaseModel):
@@ -43,3 +43,4 @@ class RiskAssessment(BaseModel):
     key_risks: list[str] = Field(description="Main risks identified, one sentence each")
     mitigants: list[str] = Field(description="Factors that reduce the risk, one sentence each")
     summary: str = Field(description="Executive summary for the credit officer, 3-5 sentences")
+    

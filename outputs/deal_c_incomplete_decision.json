@@ -1,0 +1,49 @@
+{
+  "completeness": {
+    "is_complete": false,
+    "missing_sections": [
+      "COLLATERAL",
+      "FINANCIALS"
+    ]
+  },
+  "terms": null,
+  "compliance_results": null,
+  "risk": null,
+  "human_decision": {
+    "ai_recommendation": "Refer",
+    "final_decision": "Refer",
+    "action": "accepted",
+    "reason": "",
+    "officer": "Leena",
+    "decided_at": "2026-10-25 13:58:57"
+  },
+  "next_step": "end",
+  "extraction_retries": 0,
+  "audit_log": [
+    {
+      "time": "13:58:38",
+      "agent": "Orchestrator",
+      "message": "New application received; checking completeness \u2192 completeness"
+    },
+    {
+      "time": "13:58:42",
+      "agent": "Completeness checker",
+      "message": "Missing sections: COLLATERAL, FINANCIALS"
+    },
+    {
+      "time": "13:58:42",
+      "agent": "Orchestrator",
+      "message": "Incomplete application (missing COLLATERAL, FINANCIALS); short-circuiting to credit officer \u2192 human_review"
+    },
+    {
+      "time": "13:58:57",
+      "agent": "Credit officer",
+      "message": "Leena accepted AI recommendation: Refer"
+    },
+    {
+      "time": "13:58:57",
+      "agent": "Orchestrator",
+      "message": "Credit officer decision recorded; pipeline complete \u2192 end"
+    }
+  ]
+}

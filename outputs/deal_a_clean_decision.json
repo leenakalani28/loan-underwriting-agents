@@ -17,7 +17,7 @@
     "financial_covenants": "Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x",
     "kyc_complete": true,
     "audited_accounts_provided": true,
-    "guarantee_details": "Sarah Mitchell, limited to \u00a3300,000",
+    "guarantee_details": "Sarah Mitchell provides personal guarantee limited to \u00a3300,000",
     "collateral_description": "First legal charge over freehold factory, Unit 4 Quayside Park, Bristol"
   },
   "compliance_results": [
@@ -89,17 +89,18 @@
     "risk_rating": "Low",
     "recommendation": "Approve",
     "key_risks": [
-      "Personal guarantee is limited to \u00a3300,000, covering only 25% of the loan amount, leaving the bank exposed to borrower default beyond that amount.",
-      "Security is limited to a single freehold factory, creating concentration risk despite a comfortable LTV of 64.9%."
+      "Personal guarantee is limited to \u00a3300,000, covering only 25% of the loan amount, leaving the bank exposed to the remaining \u00a3900,000 if the borrower defaults and the collateral is insufficient.",
+      "Security is limited to a single first legal charge over the freehold factory, creating concentration risk should the property value decline or be insufficient to cover the loan."
     ],
     "mitigants": [
-      "Loan-to-value of 64.9% provides ample headroom below the 75% policy limit.",
-      "Debt service coverage ratio of 1.65x exceeds the minimum 1.25x requirement, indicating strong cash\u2011flow coverage.",
-      "Net debt/EBITDA of 1.9x is well under the 3.5x ceiling, showing a solid leverage position.",
+      "LTV of 64.9% provides comfortable headroom below the 75% policy limit.",
+      "DSCR of 1.65 exceeds the minimum 1.25x requirement, indicating strong cash\u2011flow coverage.",
+      "Net debt/EBITDA of 1.9 is well within the 3.5x ceiling, showing a healthy leverage profile.",
       "Twelve years of trading history demonstrates established operating performance.",
-      "Financial covenants (minimum DSCR 1.25x, maximum net debt/EBITDA 3.0x) are documented and stricter than policy thresholds."
+      "Financial covenants (minimum DSCR 1.25x, maximum net debt/EBITDA 3.0x) are documented and stricter than policy thresholds, offering ongoing monitoring.",
+      "KYC is complete and audited accounts have been provided, confirming the borrower\u2019s financial reporting integrity."
     ],
-    "summary": "Harbourside Precision Engineering Ltd requests a \u00a31.2m secured loan with a 7\u2011year tenor. The transaction is well\u2011collateralised (LTV 64.9%) and supported by strong cash\u2011flow metrics (DSCR 1.65x, net debt/EBITDA 1.9x) and a long trading history. While the personal guarantee is limited to \u00a3300k and security is concentrated in a single property, the overall risk profile remains low, justifying an approval with the existing covenants and monitoring arrangements."
+    "summary": "Harbourside Precision Engineering Ltd presents a low\u2011risk profile with strong cash\u2011flow coverage (DSCR 1.65), modest leverage (net debt/EBITDA 1.9) and ample LTV headroom (64.9%). The borrower has a solid 12\u2011year trading history, complete KYC, audited accounts and robust financial covenants that exceed policy minima. Residual risks stem from a partial personal guarantee (\u00a3300k) and reliance on a single property charge, but these are mitigated by the substantial security cushion and covenant framework. Overall, the deal meets all policy thresholds and warrants approval."
   },
   "human_decision": {
     "ai_recommendation": "Approve",
@@ -107,63 +108,63 @@
     "action": "accepted",
     "reason": "",
     "officer": "Leena",
-    "decided_at": "2026-10-25 12:59:23"
+    "decided_at": "2026-10-25 13:58:16"
   },
   "next_step": "end",
   "extraction_retries": 0,
   "audit_log": [
     {
-      "time": "12:57:37",
+      "time": "13:57:46",
       "agent": "Orchestrator",
       "message": "New application received; checking completeness \u2192 completeness"
     },
     {
-      "time": "12:57:41",
+      "time": "13:57:51",
       "agent": "Completeness checker",
       "message": "All required sections present"
     },
     {
-      "time": "12:57:42",
+      "time": "13:57:51",
       "agent": "Orchestrator",
       "message": "Application complete; extracting loan terms \u2192 extractor"
     },
     {
-      "time": "12:57:46",
+      "time": "13:57:55",
       "agent": "Term extractor",
       "message": "Extracted 15 of 15 terms"
     },
     {
-      "time": "12:57:47",
+      "time": "13:57:56",
       "agent": "Orchestrator",
       "message": "Terms extracted; checking against lending policy \u2192 compliance"
     },
     {
-      "time": "12:57:51",
+      "time": "13:58:00",
       "agent": "Compliance checker",
       "message": "9 passed, 0 failed"
     },
     {
-      "time": "12:57:51",
+      "time": "13:58:00",
       "agent": "Orchestrator",
       "message": "Compliance checked; requesting risk assessment \u2192 risk"
     },
     {
-      "time": "12:57:56",
+      "time": "13:58:05",
       "agent": "Risk and summary",
       "message": "Risk rating Low; recommendation Approve"
     },
     {
-      "time": "12:57:57",
+      "time": "13:58:05",
       "agent": "Orchestrator",
       "message": "Review complete; passing to credit officer for decision \u2192 human_review"
     },
     {
-      "time": "12:59:23",
+      "time": "13:58:16",
       "agent": "Credit officer",
       "message": "Leena accepted AI recommendation: Approve"
     },
     {
-      "time": "12:59:23",
+      "time": "13:58:16",
       "agent": "Orchestrator",
       "message": "Credit officer decision recorded; pipeline complete \u2192 end"
     }
