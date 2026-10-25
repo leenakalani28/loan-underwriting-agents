@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0219
+
+1. BORROWER DETAILS
+Borrower: Oakfield Logistics Ltd
+Company number: 15234567
+Sector: Logistics (regional freight and warehousing)
+Years trading: 6
+Directors: Mark Turner (MD)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £900,000
+Purpose: Purchase of a distribution warehouse in Swindon
+Tenor: 6 years
+Interest rate: SONIA + 3.50%
+Repayment: Monthly capital and interest
+Personal guarantee: None offered
+Financial covenants: Minimum DSCR of 1.30x tested annually; maximum net debt/EBITDA of 3.0x
+
+3. COLLATERAL
+Security: First legal charge over the freehold warehouse, Unit 9 Kembrey Park, Swindon
+Independent valuation: £1,450,000 (Carter Jonas, September 2026)
+Loan-to-value: 62.1%
+
+4. FINANCIALS
+Turnover (FY2025): £4,200,000
+EBITDA (FY2025): £540,000
+Cash flow available for debt service: £263,500
+Annual debt service (proposed facility): £170,000
+Debt service coverage ratio: 1.55x
+Net debt/EBITDA after drawdown: 2.1x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, director verified
+Audited accounts: Provided for FY2024, FY2025
+Management accounts: Provided to August 2026
