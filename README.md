@@ -236,7 +236,7 @@ Orchestrator          Credit officer decision recorded; pipeline complete → en
 ### Setup
 
 ```bash
-git clone https://github.com/<your-username>/loan-underwriting-agents.git
+git clone https://github.com/leenakalani28/loan-underwriting-agents.git
 cd loan-underwriting-agents
 
 python -m venv venv
