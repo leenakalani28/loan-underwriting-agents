@@ -1,7 +1,7 @@
 # SME Loan Deal Review
 
 **Source document:** `deal_b_breach.txt`  
-**Decision date:** 2026-10-25 12:51:42
+**Decision date:** 2026-10-25 13:41:49
 
 ## Decision
 
@@ -41,7 +41,7 @@
 | R4 | Personal guarantee required for loans above £1,000,000 | medium | ❌ Fail | Guarantee offered: No on a £2,400,000 loan |
 | R5 | Borrower must have at least 2 years of trading history | high | ✅ Pass | 4.0 |
 | R6 | Net debt/EBITDA must not exceed 3.5x | medium | ❌ Fail | 4.6 |
-| R7 | Financial covenants must be agreed, documented and no weaker than policy thresholds | medium | ❌ Fail | Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the required minimum of 1.25x, making it looser than policy.) |
+| R7 | Financial covenants must be agreed, documented and no weaker than policy thresholds | medium | ❌ Fail | Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the policy minimum of 1.25x, making it looser than required.) |
 | R8 | KYC must be complete and audited accounts provided | high | ✅ Pass | KYC complete: True; audited accounts: True |
 | R9 | Borrower sector must not be on the excluded list | high | ✅ Pass | Hospitality (boutique hotels) |
 
@@ -51,38 +51,38 @@
 **Recommendation:** Decline
 
 ### Key risks
-- LTV of 82.1% exceeds the policy limit of 75% (R1).
-- DSCR of 1.15x falls short of the required minimum of 1.25x (R2).
-- No personal guarantee provided for a loan above £1,000,000 (R4).
-- Net debt/EBITDA of 4.6x exceeds the policy ceiling of 3.5x (R6).
-- Financial covenant of minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7).
+- Loan-to-value of 82.1% exceeds the policy limit of 75% (R1).
+- Debt service coverage ratio of 1.15x is below the required minimum of 1.25x (R2).
+- Personal guarantee is absent despite the loan amount exceeding £1,000,000 (R4).
+- Net debt to EBITDA of 4.6x breaches the maximum allowed ratio of 3.5x (R6).
+- Financial covenant of a minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7).
 
 ### Mitigants
 - Borrower has 4 years of trading history, exceeding the minimum 2‑year requirement.
-- First legal charge over the acquired hotel property provides secured collateral.
-- Tenor of 8 years is within the policy maximum of 10 years.
+- Audited financial statements have been provided, giving a reliable view of performance.
+- The loan tenor of 8 years is within the policy maximum of 10 years.
 - The hospitality boutique‑hotel sector is not on the excluded list.
-- KYC is complete and audited accounts have been supplied.
+- Security is a first legal charge over the acquired hotel property, providing primary recourse.
 
 ### Summary
 
-The proposed £2.4m secured loan breaches several high‑severity policy limits, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), absence of a personal guarantee, and net debt/EBITDA (4.6x > 3.5x). The covenant package is also weaker than required. While the borrower has a solid trading history, adequate security and full documentation, these mitigants do not offset the material quantitative breaches. Consequently the overall risk is assessed as high and the loan should be declined.
+The proposal fails multiple high‑severity policy tests, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), lack of a personal guarantee, net debt/EBITDA (4.6x > 3.5x) and a covenant weaker than required. While the borrower shows a solid trading track record, audited accounts, acceptable tenor and primary security over the hotel, these mitigants do not offset the significant breaches. Consequently the overall risk is assessed as High and the recommendation is to decline the loan.
 
 ## Audit trail
 
 | Time | Agent | Action |
 |---|---|---|
-| 12:50:59 | Orchestrator | New application received; checking completeness → completeness |
-| 12:51:03 | Completeness checker | All required sections present |
-| 12:51:03 | Orchestrator | Application complete; extracting loan terms → extractor |
-| 12:51:08 | Term extractor | Extracted 14 of 15 terms |
-| 12:51:09 | Orchestrator | Terms extracted; checking against lending policy → compliance |
-| 12:51:13 | Compliance checker | 4 passed, 5 failed (R1, R2, R4, R6, R7) |
-| 12:51:13 | Orchestrator | Compliance checked; requesting risk assessment → risk |
-| 12:51:18 | Risk and summary | Risk rating High; recommendation Decline |
-| 12:51:19 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
-| 12:51:42 | Credit officer | Leena accepted AI recommendation: Decline |
-| 12:51:42 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
+| 13:40:35 | Orchestrator | New application received; checking completeness → completeness |
+| 13:40:39 | Completeness checker | All required sections present |
+| 13:40:40 | Orchestrator | Application complete; extracting loan terms → extractor |
+| 13:40:44 | Term extractor | Extracted 14 of 15 terms |
+| 13:40:44 | Orchestrator | Terms extracted; checking against lending policy → compliance |
+| 13:40:48 | Compliance checker | 4 passed, 5 failed (R1, R2, R4, R6, R7) |
+| 13:40:48 | Orchestrator | Compliance checked; requesting risk assessment → risk |
+| 13:40:53 | Risk and summary | Risk rating High; recommendation Decline |
+| 13:40:54 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
+| 13:41:49 | Credit officer | Leena accepted AI recommendation: Decline |
+| 13:41:49 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
 
 ---
 *Generated by the multi-agent deal review pipeline. AI outputs are recommendations only; the final decision rests with the credit officer.*

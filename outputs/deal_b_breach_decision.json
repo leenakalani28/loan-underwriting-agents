@@ -67,7 +67,7 @@
       "rule_id": "R7",
       "description": "Financial covenants must be agreed, documented and no weaker than policy thresholds",
       "status": "FAIL",
-      "actual_value": "Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the required minimum of 1.25x, making it looser than policy.)",
+      "actual_value": "Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the policy minimum of 1.25x, making it looser than required.)",
       "severity": "medium"
     },
     {
@@ -89,20 +89,20 @@
     "risk_rating": "High",
     "recommendation": "Decline",
     "key_risks": [
-      "LTV of 82.1% exceeds the policy limit of 75% (R1).",
-      "DSCR of 1.15x falls short of the required minimum of 1.25x (R2).",
-      "No personal guarantee provided for a loan above \u00a31,000,000 (R4).",
-      "Net debt/EBITDA of 4.6x exceeds the policy ceiling of 3.5x (R6).",
-      "Financial covenant of minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7)."
+      "Loan-to-value of 82.1% exceeds the policy limit of 75% (R1).",
+      "Debt service coverage ratio of 1.15x is below the required minimum of 1.25x (R2).",
+      "Personal guarantee is absent despite the loan amount exceeding \u00a31,000,000 (R4).",
+      "Net debt to EBITDA of 4.6x breaches the maximum allowed ratio of 3.5x (R6).",
+      "Financial covenant of a minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7)."
     ],
     "mitigants": [
       "Borrower has 4 years of trading history, exceeding the minimum 2\u2011year requirement.",
-      "First legal charge over the acquired hotel property provides secured collateral.",
-      "Tenor of 8 years is within the policy maximum of 10 years.",
+      "Audited financial statements have been provided, giving a reliable view of performance.",
+      "The loan tenor of 8 years is within the policy maximum of 10 years.",
       "The hospitality boutique\u2011hotel sector is not on the excluded list.",
-      "KYC is complete and audited accounts have been supplied."
+      "Security is a first legal charge over the acquired hotel property, providing primary recourse."
     ],
-    "summary": "The proposed \u00a32.4m secured loan breaches several high\u2011severity policy limits, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), absence of a personal guarantee, and net debt/EBITDA (4.6x > 3.5x). The covenant package is also weaker than required. While the borrower has a solid trading history, adequate security and full documentation, these mitigants do not offset the material quantitative breaches. Consequently the overall risk is assessed as high and the loan should be declined."
+    "summary": "The proposal fails multiple high\u2011severity policy tests, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), lack of a personal guarantee, net debt/EBITDA (4.6x > 3.5x) and a covenant weaker than required. While the borrower shows a solid trading track record, audited accounts, acceptable tenor and primary security over the hotel, these mitigants do not offset the significant breaches. Consequently the overall risk is assessed as High and the recommendation is to decline the loan."
   },
   "human_decision": {
     "ai_recommendation": "Decline",
@@ -110,63 +110,63 @@
     "action": "accepted",
     "reason": "",
     "officer": "Leena",
-    "decided_at": "2026-10-25 12:51:42"
+    "decided_at": "2026-10-25 13:41:49"
   },
   "next_step": "end",
   "extraction_retries": 0,
   "audit_log": [
     {
-      "time": "12:50:59",
+      "time": "13:40:35",
       "agent": "Orchestrator",
       "message": "New application received; checking completeness \u2192 completeness"
     },
     {
-      "time": "12:51:03",
+      "time": "13:40:39",
       "agent": "Completeness checker",
       "message": "All required sections present"
     },
     {
-      "time": "12:51:03",
+      "time": "13:40:40",
       "agent": "Orchestrator",
       "message": "Application complete; extracting loan terms \u2192 extractor"
     },
     {
-      "time": "12:51:08",
+      "time": "13:40:44",
       "agent": "Term extractor",
       "message": "Extracted 14 of 15 terms"
     },
     {
-      "time": "12:51:09",
+      "time": "13:40:44",
       "agent": "Orchestrator",
       "message": "Terms extracted; checking against lending policy \u2192 compliance"
     },
     {
-      "time": "12:51:13",
+      "time": "13:40:48",
       "agent": "Compliance checker",
       "message": "4 passed, 5 failed (R1, R2, R4, R6, R7)"
     },
     {
-      "time": "12:51:13",
+      "time": "13:40:48",
       "agent": "Orchestrator",
       "message": "Compliance checked; requesting risk assessment \u2192 risk"
     },
     {
-      "time": "12:51:18",
+      "time": "13:40:53",
       "agent": "Risk and summary",
       "message": "Risk rating High; recommendation Decline"
     },
     {
-      "time": "12:51:19",
+      "time": "13:40:54",
       "agent": "Orchestrator",
       "message": "Review complete; passing to credit officer for decision \u2192 human_review"
     },
     {
-      "time": "12:51:42",
+      "time": "13:41:49",
       "agent": "Credit officer",
       "message": "Leena accepted AI recommendation: Decline"
     },
     {
-      "time": "12:51:42",
+      "time": "13:41:49",
       "agent": "Orchestrator",
       "message": "Credit officer decision recorded; pipeline complete \u2192 end"
     }
