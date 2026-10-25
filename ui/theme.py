@@ -29,10 +29,11 @@ header[data-testid="stHeader"] { background: transparent; }
 .stAppDeployButton { display: none; }
 .block-container { padding-top: 1.5rem; padding-bottom: 3rem; max-width: 1120px; }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero and deal header (navy band) ---------- */
 .nb-hero { background: var(--navy); border-radius: 24px; overflow: hidden; }
 .nb-nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 28px; }
 .nb-logo { display: flex; align-items: center; gap: 10px; color: #FFFFFF; font-weight: 700; font-size: 18px; }
+.nb-crumb { color: var(--text-on-navy); font-weight: 400; font-size: 13px; margin-left: 6px; }
 .nb-user { display: flex; align-items: center; gap: 10px; color: var(--text-on-navy); font-size: 13px; }
 .nb-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--navy-2); color: var(--apricot);
   display: flex; align-items: center; justify-content: center; font-weight: 700; }
@@ -43,6 +44,14 @@ header[data-testid="stHeader"] { background: transparent; }
   border-radius: 999px; background: var(--navy-2); color: var(--apricot-text); }
 .nb-h1 { color: #FFFFFF; font-size: 36px; font-weight: 700; line-height: 1.15; margin: 14px 0 10px; }
 .nb-lead { color: var(--text-on-navy); font-size: 15px; line-height: 1.6; max-width: 480px; }
+
+.nb-deal-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 4px 28px 28px; }
+.nb-deal-name { color: #FFFFFF; font-size: 28px; font-weight: 700; line-height: 1.2; }
+.nb-deal-meta { color: var(--text-on-navy); font-size: 14px; margin-top: 6px; }
+.nb-pill { font-size: 12px; padding: 7px 14px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.nb-pill.progress { background: var(--navy-2); color: var(--apricot-text); }
+.nb-pill.waiting { background: var(--amber-soft); color: var(--amber); }
+.nb-pill.complete { background: var(--green-soft); color: var(--green); }
 
 /* ---------- Application queue ---------- */
 .nb-queue-head { display: flex; justify-content: space-between; align-items: flex-end; margin: 30px 0 14px; }
@@ -63,6 +72,40 @@ header[data-testid="stHeader"] { background: transparent; }
 .nb-amount { font-size: 30px; font-weight: 700; color: var(--navy); margin: 10px 0 4px; }
 .nb-meta { font-size: 13px; color: var(--text-muted); line-height: 1.5; min-height: 39px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---------- Agent step board ---------- */
+.nb-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.nb-step { background: #FFFFFF; border-radius: 20px; padding: 16px; border: 2px solid transparent;
+  box-shadow: 0 2px 12px rgba(11, 26, 43, 0.07); transition: all 0.3s; }
+.nb-step-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; background: var(--canvas); color: var(--text-muted); }
+.nb-step-name { font-weight: 700; color: var(--navy); font-size: 14px; margin-top: 12px; }
+.nb-step-detail { font-size: 12px; color: var(--text-muted); margin-top: 4px; min-height: 34px; line-height: 1.4; }
+.nb-step.running { border-color: var(--apricot); }
+.nb-step.running .nb-step-num { background: var(--apricot); color: var(--navy); animation: nb-pulse 1.2s infinite; }
+.nb-step.done .nb-step-num { background: var(--green-soft); color: var(--green); }
+.nb-step.warn .nb-step-num { background: var(--amber-soft); color: var(--amber); }
+.nb-step.fail .nb-step-num { background: var(--red-soft); color: var(--red); }
+.nb-step.awaiting { border-color: var(--amber); }
+.nb-step.awaiting .nb-step-num { background: var(--amber-soft); color: var(--amber); }
+.nb-step.skipped { opacity: 0.45; }
+@keyframes nb-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 178, 91, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 178, 91, 0); }
+}
+
+/* ---------- Orchestrator activity feed ---------- */
+.nb-feed-title { font-size: 17px; font-weight: 700; color: var(--navy); margin: 28px 0 10px; }
+.nb-feed { background: #FFFFFF; border-radius: 20px; padding: 6px 22px; box-shadow: 0 2px 12px rgba(11, 26, 43, 0.07); }
+.nb-feed-row { display: grid; grid-template-columns: 76px 150px 1fr; gap: 12px; padding: 11px 0;
+  border-top: 1px solid #EEF1F5; font-size: 13px; color: var(--navy); }
+.nb-feed-row:first-child { border-top: none; }
+.nb-feed-time { color: #8A96A3; font-family: ui-monospace, Consolas, monospace; }
+.nb-feed-agent { font-weight: 600; }
+.nb-feed-agent.orch { color: var(--amber); }
+.nb-feed-agent.guard { color: var(--red); }
+.nb-feed-agent.officer { color: var(--green); }
+.nb-feed-empty { padding: 14px 0; color: var(--text-muted); font-size: 13px; }
 
 /* ---------- Buttons: Monzo-style pills ---------- */
 .stButton > button, [data-testid="stPopover"] button {
