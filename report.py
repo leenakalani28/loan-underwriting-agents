@@ -17,9 +17,11 @@ TERM_LABELS = {
     "personal_guarantee": "Personal guarantee",
     "guarantee_details": "Guarantee details",
     "collateral_description": "Security",
+    "collateral_valuation": "Collateral valuation",
     "financial_covenants": "Financial covenants",
     "kyc_complete": "KYC complete",
     "audited_accounts_provided": "Audited accounts provided",
+    
 }
 
 STATUS_ICONS = {"PASS": "✅ Pass", "FAIL": "❌ Fail", "UNABLE_TO_VERIFY": "⚠️ Unable to verify"}
@@ -31,7 +33,7 @@ def format_value(key, value):
         return "Not stated"
     if isinstance(value, bool):
         return "Yes" if value else "No"
-    if key == "loan_amount":
+    if key in ("loan_amount", "collateral_valuation"):
         return f"£{value:,.0f}"
     if isinstance(value, float) and value.is_integer():
         return str(int(value))

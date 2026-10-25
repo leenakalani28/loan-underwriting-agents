@@ -1,17 +1,12 @@
 import json
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.messages import ToolMessage
 
 from llm import get_llm
 from models import RiskAssessment
 from state import DealState, log_entry
-from agents.tools import verify_ltv
 
 # Lets us compare outcomes: a higher number means stricter
 STRICTNESS = {"Approve": 0, "Refer": 1, "Decline": 2}
-
-# The tools this agent may use, looked up by name when the LLM asks for one
-TOOLS = {"verify_ltv": verify_ltv}
 
 
 def policy_floor(compliance_results: list) -> str:
@@ -32,13 +27,9 @@ PROMPT = ChatPromptTemplate.from_messages([
      "Risk rating guide: Low = no breaches and comfortable headroom; "
      "Medium = minor breaches or thin headroom; High = serious breaches or several weaknesses. "
      "Residual risks on a deal with no breaches and comfortable headroom do not raise the rating above Low.\n\n"
-     "Tools:\n"
-     "- Before relying on the loan-to-value figure, verify it with the verify_ltv tool, using the "
-     "loan_amount, collateral_valuation and ltv_percent from the extracted terms. "
-     "If the tool reports an inconsistency, list it as a key risk.\n\n"
      "Grounding rules:\n"
      "- Every FAILED compliance rule must appear as a key risk.\n"
-     "- Every statement must be supported by the extracted loan terms or a tool result. Never invent facts.\n"
+     "- Every statement must be supported by the extracted loan terms. Never invent facts.\n"
      "- Describe guarantees and security exactly as stated in guarantee_details and "
      "collateral_description, including any limits or amounts.\n"
      "- Always list at least one key risk. Even strong deals carry residual risks, "
@@ -61,45 +52,20 @@ def format_compliance(results: list) -> str:
     )
 
 
-def describe_tool_result(result: dict) -> str:
-    """One readable line about a tool result, for the audit log."""
-    if "error" in result:
-        return f"error: {result['error']}"
-    verdict = "consistent" if result["consistent"] else f"MISMATCH of {result['difference_points']} points"
-    return (f"calculated LTV {result['calculated_ltv_percent']}%, "
-            f"stated {result['stated_ltv_percent']}%, {verdict}")
-
-
 def risk_node(state: DealState) -> dict:
     terms = state["terms"]
     results = state["compliance_results"]
     floor = policy_floor(results)
-    log_lines = []
 
-    messages = PROMPT.format_messages(
-        floor=floor,
-        terms=json.dumps(terms, indent=2),
-        compliance=format_compliance(results),
-    )
-
-    # ---- Stage 1: the LLM decides whether to use a tool ----
-    llm_with_tools = get_llm().bind_tools(list(TOOLS.values()))
-    response = llm_with_tools.invoke(messages)
-
-    if response.tool_calls:
-        messages.append(response)
-        for call in response.tool_calls:
-            result = TOOLS[call["name"]].invoke(call["args"])
-            messages.append(ToolMessage(content=json.dumps(result), tool_call_id=call["id"]))
-            log_lines.append(log_entry("Risk and summary",
-                                       f"Tool call: {call['name']} → {describe_tool_result(result)}"))
-    else:
-        log_lines.append(log_entry("Risk and summary", "No tool call made"))
-
-    # ---- Stage 2: the structured risk assessment, with any tool results in view ----
-    assessment = get_llm().with_structured_output(RiskAssessment).invoke(messages)
+    llm = get_llm().with_structured_output(RiskAssessment)
+    assessment = (PROMPT | llm).invoke({
+        "floor": floor,
+        "terms": json.dumps(terms, indent=2),
+        "compliance": format_compliance(results),
+    })
 
     # Guardrail: the LLM can be stricter than policy, never more lenient
+    log_lines = []
     if STRICTNESS[assessment.recommendation] < STRICTNESS[floor]:
         log_lines.append(log_entry(
             "Policy guardrail",

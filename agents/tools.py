@@ -1,19 +1,24 @@
+import json
+from datetime import date
+from pathlib import Path
+
 from langchain_core.tools import tool
+
+# A mock company registry. In production this would be the Companies House API.
+REGISTRY = json.loads(Path("data/company_registry.json").read_text(encoding="utf-8"))
 
 
 @tool
-def verify_ltv(loan_amount: float, collateral_valuation: float, stated_ltv_percent: float) -> dict:
-    """Recalculates the loan-to-value ratio from the loan amount and the collateral valuation,
-    and checks it against the LTV stated in the application. Use this before relying on any LTV figure."""
-    if collateral_valuation <= 0:
-        return {"error": "Collateral valuation must be greater than zero"}
+def lookup_company(company_number: str) -> dict:
+    """Looks up a UK company in the company registry by its company number.
+    Returns the registered name, status (e.g. Active, Dissolved), incorporation date,
+    years since incorporation and current directors.
+    Use this to verify the borrower's identity and trading history against the application."""
+    number = company_number.strip()
+    record = REGISTRY.get(number)
+    if record is None:
+        return {"found": False, "company_number": number}
 
-    calculated = round(loan_amount / collateral_valuation * 100, 1)
-    difference = round(calculated - stated_ltv_percent, 1)
-
-    return {
-        "calculated_ltv_percent": calculated,
-        "stated_ltv_percent": stated_ltv_percent,
-        "difference_points": difference,
-        "consistent": abs(difference) <= 0.5,   # allow for rounding in the application
-    }
+    incorporated = date.fromisoformat(record["incorporated_on"])
+    years = round((date.today() - incorporated).days / 365.25, 1)
+    return {"found": True, "company_number": number, **record, "years_since_incorporation": years}

@@ -1,0 +1,20 @@
+{
+  "08123456": {
+    "company_name": "Harbourside Precision Engineering Ltd",
+    "status": "Active",
+    "incorporated_on": "2014-02-11",
+    "directors": ["Sarah Mitchell", "James Okafor"]
+  },
+  "11987654": {
+    "company_name": "Greenway Leisure Group Ltd",
+    "status": "Active",
+    "incorporated_on": "2022-03-07",
+    "directors": ["Daniel Reeves"]
+  },
+  "13456789": {
+    "company_name": "Brightpath Digital Ltd",
+    "status": "Active",
+    "incorporated_on": "2023-06-19",
+    "directors": ["Priya Sharma"]
+  }
+}
