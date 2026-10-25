@@ -6,6 +6,7 @@
   "terms": {
     "reference": "CR-2026-0141",
     "borrower_name": "Harbourside Precision Engineering Ltd",
+    "company_number": "08123456",
     "sector": "Manufacturing (precision components for aerospace)",
     "years_trading": 12.0,
     "loan_amount": 1200000.0,
@@ -14,11 +15,12 @@
     "dscr": 1.65,
     "net_debt_to_ebitda": 1.9,
     "personal_guarantee": true,
+    "guarantee_details": "Sarah Mitchell, limited to 300000",
+    "collateral_description": "First legal charge over freehold factory, Unit 4 Quayside Park, Bristol",
+    "collateral_valuation": 1850000.0,
     "financial_covenants": "Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x",
     "kyc_complete": true,
-    "audited_accounts_provided": true,
-    "guarantee_details": "Sarah Mitchell provides personal guarantee limited to \u00a3300,000",
-    "collateral_description": "First legal charge over freehold factory, Unit 4 Quayside Park, Bristol"
+    "audited_accounts_provided": true
   },
   "compliance_results": [
     {
@@ -83,24 +85,30 @@
       "status": "PASS",
       "actual_value": "Manufacturing (precision components for aerospace)",
       "severity": "high"
+    },
+    {
+      "rule_id": "R10",
+      "description": "Borrower must match the company registry: active, same name, and trading history consistent with incorporation date",
+      "status": "PASS",
+      "actual_value": "Registry check: Company 08123456 is Active, name matches Harbourside Precision Engineering Ltd, and the stated 12 years trading is within 1 year of the 12.7 years since incorporation.",
+      "severity": "high"
     }
   ],
   "risk": {
     "risk_rating": "Low",
     "recommendation": "Approve",
     "key_risks": [
-      "Personal guarantee is limited to \u00a3300,000, covering only 25% of the loan amount, leaving the bank exposed to the remaining \u00a3900,000 if the borrower defaults and the collateral is insufficient.",
-      "Security is limited to a single first legal charge over the freehold factory, creating concentration risk should the property value decline or be insufficient to cover the loan."
+      "Personal guarantee limited to \u00a3300,000, covering only 25% of the \u00a31,200,000 loan amount.",
+      "Security is concentrated in a single freehold factory; any decline in property value could reduce recovery."
     ],
     "mitigants": [
-      "LTV of 64.9% provides comfortable headroom below the 75% policy limit.",
-      "DSCR of 1.65 exceeds the minimum 1.25x requirement, indicating strong cash\u2011flow coverage.",
-      "Net debt/EBITDA of 1.9 is well within the 3.5x ceiling, showing a healthy leverage profile.",
-      "Twelve years of trading history demonstrates established operating performance.",
-      "Financial covenants (minimum DSCR 1.25x, maximum net debt/EBITDA 3.0x) are documented and stricter than policy thresholds, offering ongoing monitoring.",
-      "KYC is complete and audited accounts have been provided, confirming the borrower\u2019s financial reporting integrity."
+      "LTV of 64.9% provides approximately 10% headroom below the 75% policy limit.",
+      "DSCR of 1.65 offers strong cash\u2011flow coverage above the 1.25x minimum.",
+      "Net debt/EBITDA of 1.9 is well below the 3.5x limit, indicating low leverage.",
+      "12 years of trading history demonstrates an established operating track record.",
+      "KYC is complete and audited accounts have been provided, ensuring transparency."
     ],
-    "summary": "Harbourside Precision Engineering Ltd presents a low\u2011risk profile with strong cash\u2011flow coverage (DSCR 1.65), modest leverage (net debt/EBITDA 1.9) and ample LTV headroom (64.9%). The borrower has a solid 12\u2011year trading history, complete KYC, audited accounts and robust financial covenants that exceed policy minima. Residual risks stem from a partial personal guarantee (\u00a3300k) and reliance on a single property charge, but these are mitigated by the substantial security cushion and covenant framework. Overall, the deal meets all policy thresholds and warrants approval."
+    "summary": "Harbourside Precision Engineering Ltd presents a strong credit profile with a 7\u2011year loan of \u00a31.2m secured by a first legal charge over a freehold factory valued at \u00a31.85m, resulting in an LTV of 64.9% and a DSCR of 1.65. The borrower has 12 years of trading, low leverage (net debt/EBITDA 1.9), and complies with all policy covenants and KYC requirements. The only residual concerns are the partial personal guarantee limited to \u00a3300k and reliance on a single property as security. Given the comfortable headroom on key ratios, the deal merits an approval with standard monitoring."
   },
   "human_decision": {
     "ai_recommendation": "Approve",
@@ -108,63 +116,68 @@
     "action": "accepted",
     "reason": "",
     "officer": "Leena",
-    "decided_at": "2026-10-25 13:58:16"
+    "decided_at": "2026-10-25 17:52:14"
   },
   "next_step": "end",
   "extraction_retries": 0,
   "audit_log": [
     {
-      "time": "13:57:46",
+      "time": "17:51:47",
       "agent": "Orchestrator",
       "message": "New application received; checking completeness \u2192 completeness"
     },
     {
-      "time": "13:57:51",
+      "time": "17:51:48",
       "agent": "Completeness checker",
       "message": "All required sections present"
     },
     {
-      "time": "13:57:51",
+      "time": "17:51:49",
       "agent": "Orchestrator",
       "message": "Application complete; extracting loan terms \u2192 extractor"
     },
     {
-      "time": "13:57:55",
+      "time": "17:51:51",
       "agent": "Term extractor",
-      "message": "Extracted 15 of 15 terms"
+      "message": "Extracted 17 of 17 terms"
     },
     {
-      "time": "13:57:56",
+      "time": "17:51:52",
       "agent": "Orchestrator",
       "message": "Terms extracted; checking against lending policy \u2192 compliance"
     },
     {
-      "time": "13:58:00",
+      "time": "17:51:54",
       "agent": "Compliance checker",
-      "message": "9 passed, 0 failed"
+      "message": "Tool call: lookup_company(08123456) \u2192 Harbourside Precision Engineering Ltd, Active, incorporated 2014-02-11 (12.7 years)"
     },
     {
-      "time": "13:58:00",
+      "time": "17:51:55",
+      "agent": "Compliance checker",
+      "message": "10 passed, 0 failed"
+    },
+    {
+      "time": "17:51:56",
       "agent": "Orchestrator",
       "message": "Compliance checked; requesting risk assessment \u2192 risk"
     },
     {
-      "time": "13:58:05",
+      "time": "17:51:59",
       "agent": "Risk and summary",
       "message": "Risk rating Low; recommendation Approve"
     },
     {
-      "time": "13:58:05",
+      "time": "17:52:00",
       "agent": "Orchestrator",
       "message": "Review complete; passing to credit officer for decision \u2192 human_review"
     },
     {
-      "time": "13:58:16",
+      "time": "17:52:14",
       "agent": "Credit officer",
       "message": "Leena accepted AI recommendation: Approve"
     },
     {
-      "time": "13:58:16",
+      "time": "17:52:14",
       "agent": "Orchestrator",
       "message": "Credit officer decision recorded; pipeline complete \u2192 end"
     }

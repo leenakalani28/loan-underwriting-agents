@@ -15,33 +15,33 @@
     "action": "accepted",
     "reason": "",
     "officer": "Leena",
-    "decided_at": "2026-10-25 13:58:57"
+    "decided_at": "2026-10-25 17:53:14"
   },
   "next_step": "end",
   "extraction_retries": 0,
   "audit_log": [
     {
-      "time": "13:58:38",
+      "time": "17:52:54",
       "agent": "Orchestrator",
       "message": "New application received; checking completeness \u2192 completeness"
     },
     {
-      "time": "13:58:42",
+      "time": "17:52:56",
       "agent": "Completeness checker",
       "message": "Missing sections: COLLATERAL, FINANCIALS"
     },
     {
-      "time": "13:58:42",
+      "time": "17:52:57",
       "agent": "Orchestrator",
       "message": "Incomplete application (missing COLLATERAL, FINANCIALS); short-circuiting to credit officer \u2192 human_review"
     },
     {
-      "time": "13:58:57",
+      "time": "17:53:14",
       "agent": "Credit officer",
       "message": "Leena accepted AI recommendation: Refer"
     },
     {
-      "time": "13:58:57",
+      "time": "17:53:14",
       "agent": "Orchestrator",
       "message": "Credit officer decision recorded; pipeline complete \u2192 end"
     }

@@ -1,0 +1,185 @@
+{
+  "completeness": {
+    "is_complete": true,
+    "missing_sections": []
+  },
+  "terms": {
+    "reference": "CR-2026-0219",
+    "borrower_name": "Oakfield Logistics Ltd",
+    "company_number": "15234567",
+    "sector": "Logistics (regional freight and warehousing)",
+    "years_trading": 6.0,
+    "loan_amount": 900000.0,
+    "tenor_years": 6.0,
+    "ltv_percent": 62.1,
+    "dscr": 1.55,
+    "net_debt_to_ebitda": 2.1,
+    "personal_guarantee": false,
+    "guarantee_details": null,
+    "collateral_description": "First legal charge over the freehold warehouse, Unit 9 Kembrey Park, Swindon",
+    "collateral_valuation": 1450000.0,
+    "financial_covenants": "Minimum DSCR of 1.30x tested annually; maximum net debt/EBITDA of 3.0x",
+    "kyc_complete": true,
+    "audited_accounts_provided": true
+  },
+  "compliance_results": [
+    {
+      "rule_id": "R1",
+      "description": "Loan-to-value must not exceed 75%",
+      "status": "PASS",
+      "actual_value": "62.1",
+      "severity": "high"
+    },
+    {
+      "rule_id": "R2",
+      "description": "Debt service coverage ratio must be at least 1.25x",
+      "status": "PASS",
+      "actual_value": "1.55",
+      "severity": "high"
+    },
+    {
+      "rule_id": "R3",
+      "description": "Tenor must not exceed 10 years",
+      "status": "PASS",
+      "actual_value": "6.0",
+      "severity": "medium"
+    },
+    {
+      "rule_id": "R4",
+      "description": "Personal guarantee required for loans above \u00a31,000,000",
+      "status": "PASS",
+      "actual_value": "Not required for a \u00a3900,000 loan",
+      "severity": "medium"
+    },
+    {
+      "rule_id": "R5",
+      "description": "Borrower must have at least 2 years of trading history",
+      "status": "PASS",
+      "actual_value": "6.0",
+      "severity": "high"
+    },
+    {
+      "rule_id": "R6",
+      "description": "Net debt/EBITDA must not exceed 3.5x",
+      "status": "PASS",
+      "actual_value": "2.1",
+      "severity": "medium"
+    },
+    {
+      "rule_id": "R7",
+      "description": "Financial covenants must be agreed, documented and no weaker than policy thresholds",
+      "status": "PASS",
+      "actual_value": "Minimum DSCR of 1.30x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.30\u202f\u2265\u202f1.25 and net debt/EBITDA 3.0\u202f\u2264\u202f3.5).)",
+      "severity": "medium"
+    },
+    {
+      "rule_id": "R8",
+      "description": "KYC must be complete and audited accounts provided",
+      "status": "PASS",
+      "actual_value": "KYC complete: True; audited accounts: True",
+      "severity": "high"
+    },
+    {
+      "rule_id": "R9",
+      "description": "Borrower sector must not be on the excluded list",
+      "status": "PASS",
+      "actual_value": "Logistics (regional freight and warehousing)",
+      "severity": "high"
+    },
+    {
+      "rule_id": "R10",
+      "description": "Borrower must match the company registry: active, same name, and trading history consistent with incorporation date",
+      "status": "FAIL",
+      "actual_value": "Registry check: FAIL: Stated 6.0 years of trading exceeds the 1.5 years since incorporation (2025-04-14) by more than 1 year.",
+      "severity": "high"
+    }
+  ],
+  "risk": {
+    "risk_rating": "High",
+    "recommendation": "Decline",
+    "key_risks": [
+      "Registry mismatch: stated trading history of 6 years exceeds the 1.5 years since incorporation, failing the company registry verification (R10).",
+      "No personal guarantee and security limited to a single freehold warehouse, creating concentration risk."
+    ],
+    "mitigants": [
+      "LTV of 62.1% provides comfortable headroom below the 75% policy limit.",
+      "DSCR of 1.55 offers strong cash\u2011flow coverage above the 1.25x minimum.",
+      "Net debt/EBITDA of 2.1x is well under the 3.5x ceiling, indicating low leverage.",
+      "Collateral valuation of \u00a31.45m exceeds the loan amount, giving a solid security buffer.",
+      "Six years of trading, complete KYC and audited accounts demonstrate robust documentation."
+    ],
+    "summary": "The loan fails the mandatory company registry verification, with the borrower\u2019s reported trading history inconsistent with its incorporation date, representing a high\u2011severity compliance breach. Although the financial metrics (LTV, DSCR, leverage) and documentation are strong, the absence of a personal guarantee and reliance on a single warehouse as security add concentration risk. Given the serious compliance failure, the appropriate outcome under policy is to decline the facility."
+  },
+  "human_decision": {
+    "ai_recommendation": "Decline",
+    "final_decision": "Decline",
+    "action": "accepted",
+    "reason": "",
+    "officer": "Leena",
+    "decided_at": "2026-10-25 17:53:42"
+  },
+  "next_step": "end",
+  "extraction_retries": 0,
+  "audit_log": [
+    {
+      "time": "17:53:21",
+      "agent": "Orchestrator",
+      "message": "New application received; checking completeness \u2192 completeness"
+    },
+    {
+      "time": "17:53:22",
+      "agent": "Completeness checker",
+      "message": "All required sections present"
+    },
+    {
+      "time": "17:53:23",
+      "agent": "Orchestrator",
+      "message": "Application complete; extracting loan terms \u2192 extractor"
+    },
+    {
+      "time": "17:53:25",
+      "agent": "Term extractor",
+      "message": "Extracted 16 of 17 terms"
+    },
+    {
+      "time": "17:53:26",
+      "agent": "Orchestrator",
+      "message": "Terms extracted; checking against lending policy \u2192 compliance"
+    },
+    {
+      "time": "17:53:28",
+      "agent": "Compliance checker",
+      "message": "Tool call: lookup_company(15234567) \u2192 Oakfield Logistics Ltd, Active, incorporated 2025-04-14 (1.5 years)"
+    },
+    {
+      "time": "17:53:29",
+      "agent": "Compliance checker",
+      "message": "9 passed, 1 failed (R10)"
+    },
+    {
+      "time": "17:53:30",
+      "agent": "Orchestrator",
+      "message": "Compliance checked; requesting risk assessment \u2192 risk"
+    },
+    {
+      "time": "17:53:33",
+      "agent": "Risk and summary",
+      "message": "Risk rating High; recommendation Decline"
+    },
+    {
+      "time": "17:53:34",
+      "agent": "Orchestrator",
+      "message": "Review complete; passing to credit officer for decision \u2192 human_review"
+    },
+    {
+      "time": "17:53:42",
+      "agent": "Credit officer",
+      "message": "Leena accepted AI recommendation: Decline"
+    },
+    {
+      "time": "17:53:42",
+      "agent": "Orchestrator",
+      "message": "Credit officer decision recorded; pipeline complete \u2192 end"
+    }
+  ]
+}

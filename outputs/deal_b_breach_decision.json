@@ -6,6 +6,7 @@
   "terms": {
     "reference": "CR-2026-0187",
     "borrower_name": "Greenway Leisure Group Ltd",
+    "company_number": "11987654",
     "sector": "Hospitality (boutique hotels)",
     "years_trading": 4.0,
     "loan_amount": 2400000.0,
@@ -14,11 +15,12 @@
     "dscr": 1.15,
     "net_debt_to_ebitda": 4.6,
     "personal_guarantee": false,
+    "guarantee_details": null,
+    "collateral_description": "First legal charge over the acquired hotel property",
+    "collateral_valuation": 2925000.0,
     "financial_covenants": "Minimum DSCR of 1.20x tested annually",
     "kyc_complete": true,
-    "audited_accounts_provided": true,
-    "guarantee_details": null,
-    "collateral_description": "First legal charge over the acquired hotel property"
+    "audited_accounts_provided": true
   },
   "compliance_results": [
     {
@@ -67,7 +69,7 @@
       "rule_id": "R7",
       "description": "Financial covenants must be agreed, documented and no weaker than policy thresholds",
       "status": "FAIL",
-      "actual_value": "Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the policy minimum of 1.25x, making it looser than required.)",
+      "actual_value": "Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the required minimum of 1.25x, making it looser than policy.)",
       "severity": "medium"
     },
     {
@@ -83,26 +85,32 @@
       "status": "PASS",
       "actual_value": "Hospitality (boutique hotels)",
       "severity": "high"
+    },
+    {
+      "rule_id": "R10",
+      "description": "Borrower must match the company registry: active, same name, and trading history consistent with incorporation date",
+      "status": "PASS",
+      "actual_value": "Registry check: Company found (Active) with matching name and years_since_incorporation 4.6, which is within 1 year of the stated 4.0 years of trading.",
+      "severity": "high"
     }
   ],
   "risk": {
     "risk_rating": "High",
     "recommendation": "Decline",
     "key_risks": [
-      "Loan-to-value of 82.1% exceeds the policy limit of 75% (R1).",
-      "Debt service coverage ratio of 1.15x is below the required minimum of 1.25x (R2).",
-      "Personal guarantee is absent despite the loan amount exceeding \u00a31,000,000 (R4).",
-      "Net debt to EBITDA of 4.6x breaches the maximum allowed ratio of 3.5x (R6).",
-      "Financial covenant of a minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7)."
+      "Loan-to-value exceeds the policy limit of 75% (actual 82.1%).",
+      "Debt service coverage ratio is below the required minimum of 1.25x (actual 1.15x).",
+      "No personal guarantee provided despite the policy requirement for loans above \u00a31,000,000.",
+      "Net debt to EBITDA ratio breaches the 3.5x ceiling (actual 4.6x).",
+      "Financial covenant on DSCR is weaker than policy (covenant set at 1.20x versus required 1.25x)."
     ],
     "mitigants": [
-      "Borrower has 4 years of trading history, exceeding the minimum 2\u2011year requirement.",
-      "Audited financial statements have been provided, giving a reliable view of performance.",
-      "The loan tenor of 8 years is within the policy maximum of 10 years.",
-      "The hospitality boutique\u2011hotel sector is not on the excluded list.",
-      "Security is a first legal charge over the acquired hotel property, providing primary recourse."
+      "The borrower has four years of trading history, exceeding the minimum two\u2011year requirement and providing a track record of operating performance.",
+      "Audited financial statements have been supplied, allowing a reliable assessment of cash\u2011flows and profitability.",
+      "Security is a first legal charge over the acquired hotel property valued at \u00a32.925m, giving a collateral coverage ratio of approximately 1.22x the loan amount.",
+      "The loan tenor of eight years is within the policy maximum of ten years, limiting exposure duration."
     ],
-    "summary": "The proposal fails multiple high\u2011severity policy tests, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), lack of a personal guarantee, net debt/EBITDA (4.6x > 3.5x) and a covenant weaker than required. While the borrower shows a solid trading track record, audited accounts, acceptable tenor and primary security over the hotel, these mitigants do not offset the significant breaches. Consequently the overall risk is assessed as High and the recommendation is to decline the loan."
+    "summary": "Greenway Leisure Group Ltd seeks a \u00a32.4m secured loan for an eight\u2011year term, but the proposal breaches several high\u2011severity policy limits, including LTV (82.1% > 75%), DSCR (1.15x < 1.25x), net debt/EBITDA (4.6x > 3.5x), and the absence of a personal guarantee. The financial covenant offered is also weaker than required. While the borrower has a four\u2011year trading record, audited accounts, and first\u2011rank security valued at \u00a32.925m, these mitigants are insufficient to offset the material policy breaches, leading to a high risk rating and a recommendation to decline the facility."
   },
   "human_decision": {
     "ai_recommendation": "Decline",
@@ -110,63 +118,68 @@
     "action": "accepted",
     "reason": "",
     "officer": "Leena",
-    "decided_at": "2026-10-25 13:41:49"
+    "decided_at": "2026-10-25 17:52:44"
   },
   "next_step": "end",
   "extraction_retries": 0,
   "audit_log": [
     {
-      "time": "13:40:35",
+      "time": "17:52:24",
       "agent": "Orchestrator",
       "message": "New application received; checking completeness \u2192 completeness"
     },
     {
-      "time": "13:40:39",
+      "time": "17:52:25",
       "agent": "Completeness checker",
       "message": "All required sections present"
     },
     {
-      "time": "13:40:40",
+      "time": "17:52:26",
       "agent": "Orchestrator",
       "message": "Application complete; extracting loan terms \u2192 extractor"
     },
     {
-      "time": "13:40:44",
+      "time": "17:52:28",
       "agent": "Term extractor",
-      "message": "Extracted 14 of 15 terms"
+      "message": "Extracted 16 of 17 terms"
     },
     {
-      "time": "13:40:44",
+      "time": "17:52:29",
       "agent": "Orchestrator",
       "message": "Terms extracted; checking against lending policy \u2192 compliance"
     },
     {
-      "time": "13:40:48",
+      "time": "17:52:32",
       "agent": "Compliance checker",
-      "message": "4 passed, 5 failed (R1, R2, R4, R6, R7)"
+      "message": "Tool call: lookup_company(11987654) \u2192 Greenway Leisure Group Ltd, Active, incorporated 2022-03-07 (4.6 years)"
     },
     {
-      "time": "13:40:48",
+      "time": "17:52:33",
+      "agent": "Compliance checker",
+      "message": "5 passed, 5 failed (R1, R2, R4, R6, R7)"
+    },
+    {
+      "time": "17:52:33",
       "agent": "Orchestrator",
       "message": "Compliance checked; requesting risk assessment \u2192 risk"
     },
     {
-      "time": "13:40:53",
+      "time": "17:52:37",
       "agent": "Risk and summary",
       "message": "Risk rating High; recommendation Decline"
     },
     {
-      "time": "13:40:54",
+      "time": "17:52:37",
       "agent": "Orchestrator",
       "message": "Review complete; passing to credit officer for decision \u2192 human_review"
     },
     {
-      "time": "13:41:49",
+      "time": "17:52:44",
       "agent": "Credit officer",
       "message": "Leena accepted AI recommendation: Decline"
     },
     {
-      "time": "13:41:49",
+      "time": "17:52:44",
       "agent": "Orchestrator",
       "message": "Credit officer decision recorded; pipeline complete \u2192 end"
     }

@@ -1,7 +1,7 @@
 # SME Loan Deal Review
 
 **Source document:** `deal_b_breach.txt`  
-**Decision date:** 2026-10-25 13:41:49
+**Decision date:** 2026-10-25 17:52:44
 
 ## Decision
 
@@ -27,6 +27,7 @@
 | Personal guarantee | No |
 | Guarantee details | Not stated |
 | Security | First legal charge over the acquired hotel property |
+| Collateral valuation | £2,925,000 |
 | Financial covenants | Minimum DSCR of 1.20x tested annually |
 | KYC complete | Yes |
 | Audited accounts provided | Yes |
@@ -41,9 +42,10 @@
 | R4 | Personal guarantee required for loans above £1,000,000 | medium | ❌ Fail | Guarantee offered: No on a £2,400,000 loan |
 | R5 | Borrower must have at least 2 years of trading history | high | ✅ Pass | 4.0 |
 | R6 | Net debt/EBITDA must not exceed 3.5x | medium | ❌ Fail | 4.6 |
-| R7 | Financial covenants must be agreed, documented and no weaker than policy thresholds | medium | ❌ Fail | Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the policy minimum of 1.25x, making it looser than required.) |
+| R7 | Financial covenants must be agreed, documented and no weaker than policy thresholds | medium | ❌ Fail | Minimum DSCR of 1.20x tested annually (AI review: The DSCR covenant of 1.20x is below the required minimum of 1.25x, making it looser than policy.) |
 | R8 | KYC must be complete and audited accounts provided | high | ✅ Pass | KYC complete: True; audited accounts: True |
 | R9 | Borrower sector must not be on the excluded list | high | ✅ Pass | Hospitality (boutique hotels) |
+| R10 | Borrower must match the company registry: active, same name, and trading history consistent with incorporation date | high | ✅ Pass | Registry check: Company found (Active) with matching name and years_since_incorporation 4.6, which is within 1 year of the stated 4.0 years of trading. |
 
 ## AI risk assessment
 
@@ -51,38 +53,38 @@
 **Recommendation:** Decline
 
 ### Key risks
-- Loan-to-value of 82.1% exceeds the policy limit of 75% (R1).
-- Debt service coverage ratio of 1.15x is below the required minimum of 1.25x (R2).
-- Personal guarantee is absent despite the loan amount exceeding £1,000,000 (R4).
-- Net debt to EBITDA of 4.6x breaches the maximum allowed ratio of 3.5x (R6).
-- Financial covenant of a minimum DSCR 1.20x is weaker than the policy threshold of 1.25x (R7).
+- Loan-to-value exceeds the policy limit of 75% (actual 82.1%).
+- Debt service coverage ratio is below the required minimum of 1.25x (actual 1.15x).
+- No personal guarantee provided despite the policy requirement for loans above £1,000,000.
+- Net debt to EBITDA ratio breaches the 3.5x ceiling (actual 4.6x).
+- Financial covenant on DSCR is weaker than policy (covenant set at 1.20x versus required 1.25x).
 
 ### Mitigants
-- Borrower has 4 years of trading history, exceeding the minimum 2‑year requirement.
-- Audited financial statements have been provided, giving a reliable view of performance.
-- The loan tenor of 8 years is within the policy maximum of 10 years.
-- The hospitality boutique‑hotel sector is not on the excluded list.
-- Security is a first legal charge over the acquired hotel property, providing primary recourse.
+- The borrower has four years of trading history, exceeding the minimum two‑year requirement and providing a track record of operating performance.
+- Audited financial statements have been supplied, allowing a reliable assessment of cash‑flows and profitability.
+- Security is a first legal charge over the acquired hotel property valued at £2.925m, giving a collateral coverage ratio of approximately 1.22x the loan amount.
+- The loan tenor of eight years is within the policy maximum of ten years, limiting exposure duration.
 
 ### Summary
 
-The proposal fails multiple high‑severity policy tests, notably LTV (82.1% > 75%), DSCR (1.15x < 1.25x), lack of a personal guarantee, net debt/EBITDA (4.6x > 3.5x) and a covenant weaker than required. While the borrower shows a solid trading track record, audited accounts, acceptable tenor and primary security over the hotel, these mitigants do not offset the significant breaches. Consequently the overall risk is assessed as High and the recommendation is to decline the loan.
+Greenway Leisure Group Ltd seeks a £2.4m secured loan for an eight‑year term, but the proposal breaches several high‑severity policy limits, including LTV (82.1% > 75%), DSCR (1.15x < 1.25x), net debt/EBITDA (4.6x > 3.5x), and the absence of a personal guarantee. The financial covenant offered is also weaker than required. While the borrower has a four‑year trading record, audited accounts, and first‑rank security valued at £2.925m, these mitigants are insufficient to offset the material policy breaches, leading to a high risk rating and a recommendation to decline the facility.
 
 ## Audit trail
 
 | Time | Agent | Action |
 |---|---|---|
-| 13:40:35 | Orchestrator | New application received; checking completeness → completeness |
-| 13:40:39 | Completeness checker | All required sections present |
-| 13:40:40 | Orchestrator | Application complete; extracting loan terms → extractor |
-| 13:40:44 | Term extractor | Extracted 14 of 15 terms |
-| 13:40:44 | Orchestrator | Terms extracted; checking against lending policy → compliance |
-| 13:40:48 | Compliance checker | 4 passed, 5 failed (R1, R2, R4, R6, R7) |
-| 13:40:48 | Orchestrator | Compliance checked; requesting risk assessment → risk |
-| 13:40:53 | Risk and summary | Risk rating High; recommendation Decline |
-| 13:40:54 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
-| 13:41:49 | Credit officer | Leena accepted AI recommendation: Decline |
-| 13:41:49 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
+| 17:52:24 | Orchestrator | New application received; checking completeness → completeness |
+| 17:52:25 | Completeness checker | All required sections present |
+| 17:52:26 | Orchestrator | Application complete; extracting loan terms → extractor |
+| 17:52:28 | Term extractor | Extracted 16 of 17 terms |
+| 17:52:29 | Orchestrator | Terms extracted; checking against lending policy → compliance |
+| 17:52:32 | Compliance checker | Tool call: lookup_company(11987654) → Greenway Leisure Group Ltd, Active, incorporated 2022-03-07 (4.6 years) |
+| 17:52:33 | Compliance checker | 5 passed, 5 failed (R1, R2, R4, R6, R7) |
+| 17:52:33 | Orchestrator | Compliance checked; requesting risk assessment → risk |
+| 17:52:37 | Risk and summary | Risk rating High; recommendation Decline |
+| 17:52:37 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
+| 17:52:44 | Credit officer | Leena accepted AI recommendation: Decline |
+| 17:52:44 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
 
 ---
 *Generated by the multi-agent deal review pipeline. AI outputs are recommendations only; the final decision rests with the credit officer.*

@@ -1,7 +1,7 @@
 # SME Loan Deal Review
 
 **Source document:** `deal_a_clean.txt`  
-**Decision date:** 2026-10-25 13:58:16
+**Decision date:** 2026-10-25 17:52:14
 
 ## Decision
 
@@ -25,8 +25,9 @@
 | DSCR (x) | 1.65 |
 | Net debt / EBITDA (x) | 1.9 |
 | Personal guarantee | Yes |
-| Guarantee details | Sarah Mitchell provides personal guarantee limited to £300,000 |
+| Guarantee details | Sarah Mitchell, limited to 300000 |
 | Security | First legal charge over freehold factory, Unit 4 Quayside Park, Bristol |
+| Collateral valuation | £1,850,000 |
 | Financial covenants | Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x |
 | KYC complete | Yes |
 | Audited accounts provided | Yes |
@@ -44,6 +45,7 @@
 | R7 | Financial covenants must be agreed, documented and no weaker than policy thresholds | medium | ✅ Pass | Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).) |
 | R8 | KYC must be complete and audited accounts provided | high | ✅ Pass | KYC complete: True; audited accounts: True |
 | R9 | Borrower sector must not be on the excluded list | high | ✅ Pass | Manufacturing (precision components for aerospace) |
+| R10 | Borrower must match the company registry: active, same name, and trading history consistent with incorporation date | high | ✅ Pass | Registry check: Company 08123456 is Active, name matches Harbourside Precision Engineering Ltd, and the stated 12 years trading is within 1 year of the 12.7 years since incorporation. |
 
 ## AI risk assessment
 
@@ -51,36 +53,36 @@
 **Recommendation:** Approve
 
 ### Key risks
-- Personal guarantee is limited to £300,000, covering only 25% of the loan amount, leaving the bank exposed to the remaining £900,000 if the borrower defaults and the collateral is insufficient.
-- Security is limited to a single first legal charge over the freehold factory, creating concentration risk should the property value decline or be insufficient to cover the loan.
+- Personal guarantee limited to £300,000, covering only 25% of the £1,200,000 loan amount.
+- Security is concentrated in a single freehold factory; any decline in property value could reduce recovery.
 
 ### Mitigants
-- LTV of 64.9% provides comfortable headroom below the 75% policy limit.
-- DSCR of 1.65 exceeds the minimum 1.25x requirement, indicating strong cash‑flow coverage.
-- Net debt/EBITDA of 1.9 is well within the 3.5x ceiling, showing a healthy leverage profile.
-- Twelve years of trading history demonstrates established operating performance.
-- Financial covenants (minimum DSCR 1.25x, maximum net debt/EBITDA 3.0x) are documented and stricter than policy thresholds, offering ongoing monitoring.
-- KYC is complete and audited accounts have been provided, confirming the borrower’s financial reporting integrity.
+- LTV of 64.9% provides approximately 10% headroom below the 75% policy limit.
+- DSCR of 1.65 offers strong cash‑flow coverage above the 1.25x minimum.
+- Net debt/EBITDA of 1.9 is well below the 3.5x limit, indicating low leverage.
+- 12 years of trading history demonstrates an established operating track record.
+- KYC is complete and audited accounts have been provided, ensuring transparency.
 
 ### Summary
 
-Harbourside Precision Engineering Ltd presents a low‑risk profile with strong cash‑flow coverage (DSCR 1.65), modest leverage (net debt/EBITDA 1.9) and ample LTV headroom (64.9%). The borrower has a solid 12‑year trading history, complete KYC, audited accounts and robust financial covenants that exceed policy minima. Residual risks stem from a partial personal guarantee (£300k) and reliance on a single property charge, but these are mitigated by the substantial security cushion and covenant framework. Overall, the deal meets all policy thresholds and warrants approval.
+Harbourside Precision Engineering Ltd presents a strong credit profile with a 7‑year loan of £1.2m secured by a first legal charge over a freehold factory valued at £1.85m, resulting in an LTV of 64.9% and a DSCR of 1.65. The borrower has 12 years of trading, low leverage (net debt/EBITDA 1.9), and complies with all policy covenants and KYC requirements. The only residual concerns are the partial personal guarantee limited to £300k and reliance on a single property as security. Given the comfortable headroom on key ratios, the deal merits an approval with standard monitoring.
 
 ## Audit trail
 
 | Time | Agent | Action |
 |---|---|---|
-| 13:57:46 | Orchestrator | New application received; checking completeness → completeness |
-| 13:57:51 | Completeness checker | All required sections present |
-| 13:57:51 | Orchestrator | Application complete; extracting loan terms → extractor |
-| 13:57:55 | Term extractor | Extracted 15 of 15 terms |
-| 13:57:56 | Orchestrator | Terms extracted; checking against lending policy → compliance |
-| 13:58:00 | Compliance checker | 9 passed, 0 failed |
-| 13:58:00 | Orchestrator | Compliance checked; requesting risk assessment → risk |
-| 13:58:05 | Risk and summary | Risk rating Low; recommendation Approve |
-| 13:58:05 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
-| 13:58:16 | Credit officer | Leena accepted AI recommendation: Approve |
-| 13:58:16 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
+| 17:51:47 | Orchestrator | New application received; checking completeness → completeness |
+| 17:51:48 | Completeness checker | All required sections present |
+| 17:51:49 | Orchestrator | Application complete; extracting loan terms → extractor |
+| 17:51:51 | Term extractor | Extracted 17 of 17 terms |
+| 17:51:52 | Orchestrator | Terms extracted; checking against lending policy → compliance |
+| 17:51:54 | Compliance checker | Tool call: lookup_company(08123456) → Harbourside Precision Engineering Ltd, Active, incorporated 2014-02-11 (12.7 years) |
+| 17:51:55 | Compliance checker | 10 passed, 0 failed |
+| 17:51:56 | Orchestrator | Compliance checked; requesting risk assessment → risk |
+| 17:51:59 | Risk and summary | Risk rating Low; recommendation Approve |
+| 17:52:00 | Orchestrator | Review complete; passing to credit officer for decision → human_review |
+| 17:52:14 | Credit officer | Leena accepted AI recommendation: Approve |
+| 17:52:14 | Orchestrator | Credit officer decision recorded; pipeline complete → end |
 
 ---
 *Generated by the multi-agent deal review pipeline. AI outputs are recommendations only; the final decision rests with the credit officer.*
