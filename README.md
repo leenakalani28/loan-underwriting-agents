@@ -1,6 +1,6 @@
 # Multi-Agent SME Loan Underwriting Pipeline
 
-An AI-assisted deal review system for **SME commercial lending**. Specialist AI agents check an application for completeness, extract the loan terms, test them against lending policy and assess the risk. An orchestrator coordinates the agents, and a **human credit officer makes the final decision**.
+An AI-assisted deal review system for **SME commercial lending**. Specialist AI agents check an application for completeness, extract the loan terms, test them against lending policy and assess the risk. The compliance agent uses a **company registry lookup tool** to verify the applicant against an external source. An orchestrator coordinates the agents, and a **human credit officer makes the final decision**.
 
 Built with **LangGraph**, **LangChain** and the **Groq API**, with a **Streamlit** front end.
 
@@ -52,7 +52,7 @@ A multi-agent pipeline that mirrors how a credit team actually works:
 |---|---|---|
 | 1 | **Completeness checker** (AI) | Confirms all required sections of the application are present |
 | 2 | **Term extractor** (AI) | Reads the document and fills in a structured loan terms form |
-| 3 | **Compliance checker** (Python + AI) | Tests every term against the lending policy |
+| 3 | **Compliance checker** (Python + AI + tool) | Tests every term against the lending policy, and calls a company registry tool to verify the applicant |
 | 4 | **Risk and summary** (AI) | Rates the risk, lists risks and mitigants, recommends Approve / Refer / Decline |
 | 5 | **Credit officer** (human) | Reviews the AI's work and accepts or overrides the recommendation |
 
@@ -72,7 +72,7 @@ flowchart LR
 
     O <--> C[Completeness checker<br/>LLM]
     O <--> E[Term extractor<br/>LLM]
-    O <--> P[Compliance checker<br/>Python rules + LLM]
+    O <--> P[Compliance checker<br/>Python rules + LLM + lookup_company tool]
     O <--> R[Risk and summary<br/>LLM + policy guardrail]
     O <--> H[/Credit officer review<br/>interrupt · human decides/]
 
@@ -104,6 +104,7 @@ flowchart TB
     end
 
     G --> LLM[Groq LLM<br/>via LangChain]
+    G --> REG[Company registry<br/>lookup_company tool]
     G --> POL[Lending policy<br/>lending_policy.json]
     G --> OUT[Outputs<br/>report + decision record]
 ```
@@ -115,6 +116,15 @@ Agents never call each other directly. They share a **case folder**, the `DealSt
 - Each agent reads what it needs from the folder and writes only its own slot (`completeness`, `terms`, `compliance_results`, `risk`, `human_decision`).
 - Agent outputs are **structured Pydantic models**, a fixed contract between agents rather than free text.
 - The `audit_log` uses a LangGraph **reducer** (`operator.add`), so every agent appends to the log instead of overwriting it.
+
+### Tool use: the company registry check
+
+The compliance checker is given a `lookup_company` tool (a LangChain `@tool`, bound with `bind_tools`). For rule R10, the LLM decides to call the tool with the applicant's company number; the code runs the lookup against a company registry and passes the record back; the LLM then compares the registry record with the application and returns PASS or FAIL with a reason.
+
+- The registry is a mock (`data/company_registry.json`). In production this would be the Companies House API.
+- Date arithmetic (years since incorporation) is done in Python inside the tool, never by the model.
+- **If the LLM does not call the tool, R10 is marked `UNABLE_TO_VERIFY`**, which raises the policy floor to at least Refer. A borrower can never pass the registry check without a lookup actually happening.
+- Every tool call is written to the audit trail.
 
 ### Human in the loop
 
@@ -129,13 +139,13 @@ The credit officer review uses LangGraph's `interrupt()`. The graph **pauses**, 
 | `orchestrator` | Plain Python | Whole state | `next_step`, audit log | No LLM, so routing is predictable and auditable |
 | `completeness` | LLM | Document, required sections | `completeness` | Triggers the short-circuit if sections are missing |
 | `extractor` | LLM | Document | `terms` | Structured output; returns `null` rather than guessing |
-| `compliance` | Python + LLM | Terms, policy | `compliance_results` | Python for numeric rules; LLM only for covenant adequacy |
+| `compliance` | Python + LLM + `lookup_company` tool | Terms, policy, company registry | `compliance_results` | Python for numeric rules; LLM for covenant adequacy and for the registry check, using the tool |
 | `risk` | LLM + Python guardrail | Terms, rule results | `risk` | AI can be stricter than policy, never more lenient |
 | `human_review` | Human | Review pack | `human_decision` | `interrupt()` pauses the graph; override requires a reason |
 
 ### Lending policy
 
-Nine rules, defined in `data/lending_policy.json` so thresholds can change without touching code:
+Ten rules, defined in `data/lending_policy.json` so thresholds can change without touching code:
 
 | Rule | Requirement | Severity |
 |---|---|---|
@@ -148,6 +158,7 @@ Nine rules, defined in `data/lending_policy.json` so thresholds can change witho
 | R7 | Covenants agreed and no weaker than policy (LLM review) | Medium |
 | R8 | KYC complete and audited accounts provided | High |
 | R9 | Sector not on the excluded list | High |
+| R10 | Borrower matches the company registry: active, same name, trading history consistent with incorporation (LLM + tool) | High |
 
 ---
 
@@ -167,6 +178,9 @@ A recorded human decision ends the pipeline regardless of anything else in the s
 
 **5. A human makes every final decision.**
 The AI recommendation and the human decision are stored separately, along with who decided, when, and the reason for any override.
+
+**6. Tools bring in what the document cannot.**
+The applicant's own document can't prove its own claims. The `lookup_company` tool gives the compliance agent an independent source to check identity and trading history against. The LLM decides to use the tool and interprets the result; the lookup and date arithmetic are deterministic code; and no lookup means no pass.
 
 ---
 
@@ -190,15 +204,18 @@ A Streamlit front end for a fictional bank, **Northbridge**, with four screens t
 
 ## Sample deals and outputs
 
-Three sample applications in `data/` exercise the three paths through the graph:
+Four sample applications in `data/` exercise the different paths through the graph:
 
 | Deal | Scenario | Expected outcome |
 |---|---|---|
-| `deal_a_clean.txt` | Harbourside Precision Engineering, £1.2M manufacturing loan, all terms within policy | 9/9 rules pass → Low risk → **Approve** |
+| `deal_a_clean.txt` | Harbourside Precision Engineering, £1.2M manufacturing loan, all terms within policy | 10/10 rules pass → Low risk → **Approve** |
 | `deal_b_breach.txt` | Greenway Leisure Group, £2.4M hotel acquisition with planted breaches | 5 rules fail (R1, R2, R4, R6, R7) → High risk → **Decline** |
 | `deal_c_incomplete.txt` | Brightpath Digital, £600k with Collateral and Financials missing | Short-circuit → **Refer** without AI assessment |
+| `deal_d_registry_mismatch.txt` | Oakfield Logistics, £900k warehouse loan; every figure within policy, but claims 6 years' trading when the registry shows incorporation in April 2025 | Registry tool catches it: R10 fails → High risk → **Decline** |
 
 Deal B includes a deliberately subtle breach: its DSCR covenant is set at 1.20x, below the 1.25x policy minimum. A simple "is there a covenant?" check would pass it. The LLM covenant review catches it.
+
+Deal D shows why the tool matters. Rule R5 (at least 2 years' trading) passes, because it trusts the 6 years stated in the application. Only the registry lookup exposes the misstatement. Without the tool, this deal would have been approved.
 
 Each completed review writes two files to `outputs/`:
 
@@ -213,9 +230,10 @@ See [`outputs/deal_b_breach_review.md`](outputs/deal_b_breach_review.md) for an 
 Orchestrator          New application received; checking completeness → completeness
 Completeness checker  All required sections present
 Orchestrator          Application complete; extracting loan terms → extractor
-Term extractor        Extracted 14 of 15 terms
+Term extractor        Extracted 16 of 17 terms
 Orchestrator          Terms extracted; checking against lending policy → compliance
-Compliance checker    4 passed, 5 failed (R1, R2, R4, R6, R7)
+Compliance checker    Tool call: lookup_company(11987654) → Greenway Leisure Group Ltd, Active, incorporated 2022-03-07 (4.6 years)
+Compliance checker    5 passed, 5 failed (R1, R2, R4, R6, R7)
 Orchestrator          Compliance checked; requesting risk assessment → risk
 Risk and summary      Risk rating High; recommendation Decline
 Orchestrator          Review complete; passing to credit officer for decision → human_review
@@ -271,6 +289,7 @@ Opens at `http://localhost:8501`. Select an application and click **Start AI-ass
 python run_pipeline.py deal_a_clean.txt
 python run_pipeline.py deal_b_breach.txt
 python run_pipeline.py deal_c_incomplete.txt
+python run_pipeline.py deal_d_registry_mismatch.txt
 ```
 
 The pipeline pauses for your decision in the terminal.
@@ -282,6 +301,7 @@ python test_completeness.py
 python test_extractor.py
 python test_compliance.py
 python test_risk.py
+python test_tool.py
 ```
 
 ---
@@ -296,6 +316,7 @@ loan-underwriting-agents/
 │   ├── extractor.py         # Agent 2: structured loan terms
 │   ├── compliance.py        # Agent 3: policy rules (Python + LLM)
 │   ├── risk.py              # Agent 4: risk rating, guardrail, summary
+│   ├── tools.py             # lookup_company tool (company registry check)
 │   └── human_review.py      # Credit officer review with interrupt()
 ├── ui/
 │   ├── theme.py             # Palette and styling
@@ -309,6 +330,8 @@ loan-underwriting-agents/
 │   ├── deal_a_clean.txt
 │   ├── deal_b_breach.txt
 │   ├── deal_c_incomplete.txt
+│   ├── deal_d_registry_mismatch.txt
+│   ├── company_registry.json  # Mock company registry used by the tool
 │   └── lending_policy.json
 ├── outputs/                 # Generated reports and decision records
 ├── .streamlit/config.toml   # Streamlit base theme
@@ -334,6 +357,8 @@ loan-underwriting-agents/
 
 **Test every path, not just the happy one.** Testing the incomplete application revealed a routing loop: after the officer decided, the orchestrator matched the "incomplete" rule again and sent the deal back for review. Checking terminal conditions first fixed it.
 
+**Tool calling behaves differently across model providers.** Replaying the full tool-call exchange to Groq for the structured follow-up answer failed with an error. Passing the tool result back as a plain message was reliable. Integration details like this only surface when you test against the real provider.
+
 **Domain judgement is part of evaluation.** Several issues, such as invented risks, a mis-described guarantee and padded mitigants, produced no errors at all. They were only visible to someone reading the output as a credit officer would.
 
 ---
@@ -345,6 +370,7 @@ loan-underwriting-agents/
 - **Cross-deal memory.** LangGraph's Store could hold long-term context such as prior borrower history or override patterns.
 - **Evaluation suite.** A labelled set of applications with expected terms and outcomes, run on every prompt or model change to catch regressions.
 - **Straight-through processing.** Clean, low-risk deals could bypass manual review, with only exceptions routed to a human. This demo sends every deal to a human, the more realistic position for a regulated lender today.
+- **Live registry and data tools.** Replace the mock registry with the Companies House API, and add further tools such as existing-exposure lookups from the bank's own systems and DSCR stress testing.
 - **Document ingestion.** PDF and scanned document support, with OCR, would replace the current plain-text format.
 
 ---
@@ -354,6 +380,8 @@ loan-underwriting-agents/
 - Uploaded applications must follow the same plain-text structure and section headings as the sample deals.
 - The risk agent sometimes lists policy compliance (for example, "tenor within limit") as a mitigant. A credit officer would discount this, which is part of why every deal goes to human review.
 - The AI analysis time shown in the portal includes a deliberate 0.6-second pause between steps (`DEMO_PACING` in `app.py`) so the demo is easy to follow. Set it to `0` for real timings.
+- The company registry is a mock JSON file of fictional companies, not a live Companies House connection.
+- The compliance agent is instructed to look up every applicant, so in practice it calls the tool on every complete deal. The call is genuinely model-initiated, but guided by the prompt rather than spontaneous.
 - Results depend on the Groq model in use. Outputs were validated with `openai/gpt-oss-120b`.
 
 ---
@@ -363,7 +391,7 @@ loan-underwriting-agents/
 | Layer | Technology |
 |---|---|
 | Orchestration | LangGraph (`StateGraph`, conditional edges, `interrupt`, `MemorySaver`) |
-| LLM framework | LangChain (`ChatPromptTemplate`, `with_structured_output`) |
+| LLM framework | LangChain (`ChatPromptTemplate`, `with_structured_output`, `@tool`, `bind_tools`) |
 | Model | Groq API (`openai/gpt-oss-120b`) |
 | Data contracts | Pydantic |
 | Front end | Streamlit |
