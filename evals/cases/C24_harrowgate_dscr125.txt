@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0323
+
+1. BORROWER DETAILS
+Borrower: Harrowgate Signs Ltd
+Company number: 16004123
+Sector: Manufacturing (signage)
+Years trading: 9
+Directors: Paul Lister (MD)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £600,000
+Purpose: Workshop purchase in Harrogate
+Tenor: 7 years
+Interest rate: SONIA + 3.50%
+Repayment: Monthly capital and interest
+Personal guarantee: None offered
+Financial covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+
+3. COLLATERAL
+Security: First legal charge over the workshop, Harrogate
+Independent valuation: £1,000,000 (Knight Frank, September 2026)
+Loan-to-value: 60.0%
+
+4. FINANCIALS
+Turnover (FY2025): £2,310,000
+EBITDA (FY2025): £330,000
+Cash flow available for debt service: £135,000
+Annual debt service (proposed facility): £108,000
+Debt service coverage ratio: 1.25x
+Net debt/EBITDA after drawdown: 2.6x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, all directors verified
+Audited accounts: Provided for FY2023, FY2024, FY2025
+Management accounts: Provided to September 2026

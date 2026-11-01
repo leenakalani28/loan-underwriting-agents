@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0141
+
+1. BORROWER DETAILS
+Borrower: Harbourside Precision Engineering Ltd
+Company number: 08123456
+Sector: Manufacturing (precision components for aerospace)
+Years trading: 12
+Directors: Sarah Mitchell (MD), James Okafor (FD)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £1,200,000
+Purpose: Purchase of two CNC machining centres and factory refit
+Tenor: 7 years
+Interest rate: SONIA + 3.25%
+Repayment: Monthly capital and interest
+Personal guarantee: Yes, limited to £300,000 from Sarah Mitchell
+Financial covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+
+3. COLLATERAL
+Security: First legal charge over freehold factory, Unit 4 Quayside Park, Bristol
+Independent valuation: £1,850,000 (Knight Frank, August 2026)
+Loan-to-value: 64.9%
+
+4. FINANCIALS
+Turnover (FY2025): £6,400,000
+EBITDA (FY2025): £980,000
+Cash flow available for debt service: £355,000
+Annual debt service (proposed facility): £215,000
+Debt service coverage ratio: 1.65x
+Net debt/EBITDA after drawdown: 1.9x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, all directors verified
+Audited accounts: Provided for FY2023, FY2024, FY2025
+Management accounts: Provided to September 2026

@@ -1,0 +1,302 @@
+﻿case_id,case_specific_check (C5),extracted_terms,rule_results,risk_rating,recommendation,key_risks,mitigants,summary,your_verdict (PASS/FAIL),your_failed_criteria (e.g. C3),your_reason
+C01,"Guarantee described as limited to £300,000, not full cover.","audited_accounts_provided: True
+borrower_name: Harbourside Precision Engineering Ltd
+collateral_description: First legal charge over freehold factory, Unit 4 Quayside Park, Bristol
+collateral_valuation: 1850000.0
+company_number: 08123456
+dscr: 1.65
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+guarantee_details: Sarah Mitchell, limited to £300,000
+kyc_complete: True
+loan_amount: 1200000.0
+ltv_percent: 64.9
+net_debt_to_ebitda: 1.9
+personal_guarantee: True
+reference: CR-2026-0141
+sector: Manufacturing (precision components for aerospace)
+tenor_years: 7.0
+years_trading: 12.0","R1 [PASS] Loan-to-value must not exceed 75%: 64.9
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.65
+R3 [PASS] Tenor must not exceed 10 years: 7.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Guarantee offered: Yes on a £1,200,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 12.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 1.9
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Manufacturing (precision components for aerospace)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company found (08123456), status Active, registered name matches borrower, and years since incorporation (12.7) exceeds stated trading years (12.0) by less than 1 year.",Low,Approve,"- The personal guarantee is limited to £300,000, providing only 25% coverage of the £1,200,000 loan amount.","- The loan‑to‑value ratio of 64.9% leaves comfortable headroom below the 75% policy limit.
+- The debt service coverage ratio of 1.65x comfortably exceeds the minimum 1.25x requirement.
+- Net debt to EBITDA of 1.9x is well within the 3.5x ceiling, indicating strong leverage profile.
+- A first legal charge over a freehold factory valued at £1,850,000 provides solid security.
+- The borrower has 12 years of trading history and operates in a specialised aerospace precision‑components niche, reducing competitive risk.","Harbourside Precision Engineering Ltd presents a strong credit profile with comfortable LTV, robust DSCR and low leverage. The primary residual risk is the limited personal guarantee, covering only a quarter of the loan amount. This risk is mitigated by substantial collateral, strong cash‑flow coverage and a long trading history. Overall the deal falls within policy limits and is recommended for approval.",PASS,None,"Agent correctly highlighted all genuine strengths: DSCR of 1.65 (well above the 1.25 minimum), LTV of 64.9% (comfortably below the 75% limit), net debt/EBITDA of 1.9 (below the 3.5 ceiling), and 12 years of trading history. No rules failed, so key_risks was complete. Guarantee was correctly described as limited to £300,000. No mitigants were missed or incorrectly included."
+C04,"Guarantee described as limited to £400,000.","audited_accounts_provided: True
+borrower_name: Fenwick Food Ingredients Ltd
+collateral_description: First legal charge over the freehold factory, Hexham
+collateral_valuation: 2500000.0
+company_number: 16004102
+dscr: 1.58
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+guarantee_details: Tom Fenwick, limited to £400,000
+kyc_complete: True
+loan_amount: 1600000.0
+ltv_percent: 64.0
+net_debt_to_ebitda: 2.2
+personal_guarantee: True
+reference: CR-2026-0302
+sector: Manufacturing (food ingredients)
+tenor_years: 7.0
+years_trading: 15.0","R1 [PASS] Loan-to-value must not exceed 75%: 64.0
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.58
+R3 [PASS] Tenor must not exceed 10 years: 7.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Guarantee offered: Yes on a £1,600,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 15.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.2
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Manufacturing (food ingredients)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company found (16004102), status Active, name matches Fenwick Food Ingredients Ltd, and stated trading years 15.0 are within 1 year of the 15.4 years since incorporation.",Low,Approve,"- Personal guarantee limited to £400,000, covering only 25% of the £1,600,000 loan amount, leaving the majority of exposure unsecured.
+- Security is concentrated in a single freehold factory charge, creating asset concentration risk.","- LTV of 64% provides comfortable headroom below the 75% policy limit.
+- DSCR of 1.58 offers strong cash‑flow coverage above the 1.25x minimum.
+- Net debt/EBITDA of 2.2x is well within the 3.5x ceiling, indicating ample leverage capacity.
+- 15 years of trading history demonstrates an established and experienced business.
+- Financial covenants match or exceed policy thresholds and are documented annually.","Fenwick Food Ingredients Ltd seeks a £1.6 million secured loan with a 7‑year tenor. The loan is well‑collateralised at 64% LTV against a £2.5 million freehold factory charge and the borrower shows strong cash‑flow generation with a DSCR of 1.58 and net debt/EBITDA of 2.2x. The company has a long trading history, complete KYC and audited accounts, and covenants meet policy thresholds. However, the personal guarantee is limited to £400,000, covering only a quarter of the exposure, and security is concentrated in a single asset. Overall the risk profile is low, and the loan can be approved.",PASS,None,"
+Agent correctly highlighted genuine strengths: DSCR of 1.58 (above the 1.25 minimum), LTV of 64% (below the 75% limit), net debt/EBITDA of 2.2 (below the 3.5 ceiling), and 15 years of trading history. No rules failed, so key_risks was complete. Guarantee was correctly described as limited to £400,000. No mitigants were missed or incorrectly included."
+C09,none,"audited_accounts_provided: True
+borrower_name: Thameside Coworking Ltd
+collateral_description: First legal charge over 22 Wharf Road, Reading
+collateral_valuation: 2000000.0
+company_number: 16004107
+dscr: 1.36
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+guarantee_details: Olu Adeyemi, limited to £350,000
+kyc_complete: True
+loan_amount: 1300000.0
+ltv_percent: 65.0
+net_debt_to_ebitda: 3.1
+personal_guarantee: True
+reference: CR-2026-0307
+sector: Property services (flexible office space)
+tenor_years: 8.0
+years_trading: 6.0","R1 [PASS] Loan-to-value must not exceed 75%: 65.0
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.36
+R3 [PASS] Tenor must not exceed 10 years: 8.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Guarantee offered: Yes on a £1,300,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 6.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 3.1
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Property services (flexible office space)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: PASS: Company found (16004107), active, name matches Thameside Coworking Ltd, and stated trading years (6.0) are within 1 year of years since incorporation (6.4).",Medium,Approve,"- The borrower’s net debt/EBITDA of 3.1x exceeds the agreed covenant limit of 3.0x, indicating a breach of the financial covenant.
+- The personal guarantee is limited to £350,000, covering only ~27% of the £1.3 million loan, leaving the bank exposed to borrower default risk.
+- Security is limited to a first legal charge over a single property (22 Wharf Road, Reading) with a valuation of £2 million, providing an LTV of 65% and no additional collateral diversification.","- Loan‑to‑value of 65% is comfortably below the policy ceiling of 75%, providing ample collateral coverage.
+- Debt service coverage ratio of 1.36x exceeds the minimum required 1.25x, indicating strong cash‑flow ability to meet interest and principal repayments.
+- Six years of trading history demonstrates an established operating track record in the flexible office space sector.","Thameside Coworking Ltd presents a solid credit profile with comfortable collateral coverage (LTV 65%) and strong cash‑flow metrics (DSCR 1.36x). However, the current net debt/EBITDA of 3.1x breaches the agreed covenant limit of 3.0x, and the personal guarantee only covers a fraction of the loan amount, leaving residual exposure. The loan is therefore rated Medium risk, and we recommend approval subject to covenant remediation and monitoring of the guarantee exposure.",FAIL,Covenant breach (R7 – net debt/EBITDA exceeds agreed limit),"Agent highlighted some genuine strengths such as DSCR of 1.36 and six years of trading history, but missed the key failed rule: net debt/EBITDA of 3.1 breached the agreed covenant limit of 3.0. This breach was not included in key_risks. Mitigants also included thin headroom (DSCR only 0.11 above minimum), which is not a genuine strength. No figures were misstated, but omission of the breach and inclusion of weak mitigants means mitigants were not correctly provided."
+C14,none,"audited_accounts_provided: True
+borrower_name: Redgate Furniture Makers Ltd
+collateral_description: First legal charge over the workshop, High Wycombe
+collateral_valuation: 1300000.0
+company_number: 16004112
+dscr: 1.05
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+kyc_complete: True
+loan_amount: 800000.0
+ltv_percent: 61.5
+net_debt_to_ebitda: 2.9
+personal_guarantee: False
+reference: CR-2026-0312
+sector: Manufacturing (furniture)
+tenor_years: 7.0
+years_trading: 13.0","R1 [PASS] Loan-to-value must not exceed 75%: 61.5
+R2 [FAIL] Debt service coverage ratio must be at least 1.25x: 1.05
+R3 [PASS] Tenor must not exceed 10 years: 7.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Not required for a £800,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 13.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.9
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Manufacturing (furniture)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company found (16004112), active, name matches Redgate Furniture Makers Ltd, and stated trading years 13.0 are within 1 year of the 13.4 years since incorporation.",High,Decline,"- Debt service coverage ratio of 1.05x fails the required minimum of 1.25x, indicating insufficient cash‑flow to meet debt service obligations.
+- Security is limited to a single first legal charge over the workshop in High Wycombe, creating concentration risk despite a satisfactory valuation.","- LTV of 61.5% provides comfortable headroom below the 75% policy limit.
+- Net debt/EBITDA of 2.9x is within the 3.0x covenant limit, indicating manageable leverage.
+- Borrower has a solid 13‑year trading history and the sector (furniture manufacturing) is not excluded.","Redgate Furniture Makers Ltd seeks an £800,000 secured loan secured by a first legal charge over its workshop, valued at £1.3m, giving an LTV of 61.5%. The loan fails the mandatory DSCR covenant (1.05x vs 1.25x required), creating a high risk of cash‑flow shortfall. While leverage metrics and LTV are comfortable and the borrower has a long trading history, the covenant breach and reliance on a single asset outweigh these positives. Accordingly, the credit should be declined.",PASS,R2 (DSCR < 1.25x),"
+Agent correctly highlighted the DSCR failure (1.05 vs 1.25 required) in key_risks. Mitigants were genuine strengths: LTV of 61.5% (below the 75% limit), net debt/EBITDA of 2.9 (below the 3.5 ceiling), and 13 years of trading history. No contradictions or misstatements. Nothing was missed."
+C15,none,"audited_accounts_provided: True
+borrower_name: Quayline Electrical Contractors Ltd
+collateral_description: First legal charge over the trade counter, Gateshead
+collateral_valuation: 600000.0
+company_number: 16004113
+dscr: 1.6
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+kyc_complete: True
+loan_amount: 350000.0
+ltv_percent: 58.3
+net_debt_to_ebitda: 1.7
+personal_guarantee: False
+reference: CR-2026-0313
+sector: Construction (electrical contracting)
+tenor_years: 5.0
+years_trading: 1.0","R1 [PASS] Loan-to-value must not exceed 75%: 58.3
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.6
+R3 [PASS] Tenor must not exceed 10 years: 5.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Not required for a £350,000 loan
+R5 [FAIL] Borrower must have at least 2 years of trading history: 1.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 1.7
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Construction (electrical contracting)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: PASS: Company found (16004113), active, name matches Quayline Electrical Contractors Ltd, and stated trading years 1.0 are within 1 year of the 1.4 years since incorporation.",High,Decline,"- Borrower has only 1 year of trading history, breaching the policy minimum of 2 years (R5).
+- Security is limited to a first legal charge over the trade counter in Gateshead, providing a single asset as collateral.
+- No personal guarantee is provided, increasing exposure in the event of borrower default.","- Loan-to-value is 58.3%, well below the 75% limit, providing ample headroom.
+- Debt service coverage ratio of 1.6 exceeds the required minimum of 1.25x.
+- Net debt to EBITDA of 1.7x is comfortably under the 3.5x threshold.
+- Collateral valuation of £600,000 exceeds the loan amount of £350,000, offering a cushion.","Quayline Electrical Contractors Ltd seeks a £350,000 secured loan with a 5‑year tenor. While the loan is well‑covered by collateral and financial covenants, the borrower fails the minimum trading history requirement and offers limited security without a personal guarantee. These deficiencies present a high risk of loss, leading to a recommendation to decline the facility.",PASS,R5 (Trading history < 2 years),"Agent correctly highlighted the trading-history failure (1 year vs 2 required) in key_risks. Mitigants were genuine strengths: DSCR of 1.6 (above 1.25), LTV of 58.3% (below 75%), and net debt/EBITDA of 1.7 (below 3.5). No contradictions or misstatements. Nothing was missed."
+C25,none,"audited_accounts_provided: True
+borrower_name: Stonebridge Garden Centres Ltd
+collateral_description: First legal charge over the garden centre, Tonbridge
+collateral_valuation: 1600000.0
+company_number: 16004124
+dscr: 1.55
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+kyc_complete: True
+loan_amount: 1000000.0
+ltv_percent: 62.5
+net_debt_to_ebitda: 2.0
+personal_guarantee: False
+reference: CR-2026-0324
+sector: Retail (garden centres)
+tenor_years: 8.0
+years_trading: 16.0","R1 [PASS] Loan-to-value must not exceed 75%: 62.5
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.55
+R3 [PASS] Tenor must not exceed 10 years: 8.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Not required for a £1,000,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 16.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.0
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Retail (garden centres)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: PASS: company found (16004124), active, name matches Stonebridge Garden Centres Ltd, and stated 16.0 years trading is within 1 year of the 16.4 years since incorporation.",Low,Approve,"- The loan is secured by a single property – the garden centre in Tonbridge – creating concentration risk in the collateral base.
+- No personal guarantee is provided, leaving the bank exposed to borrower‑only repayment risk.
+- The borrower operates in the retail garden‑centre sector, which can be sensitive to consumer spending cycles and economic downturns.","- LTV of 62.5% provides comfortable headroom below the 75% policy limit.
+- DSCR of 1.55x exceeds the minimum 1.25x requirement, indicating strong cash‑flow coverage.
+- Net debt/EBITDA of 2.0x is well under the 3.5x ceiling, showing manageable leverage.
+- Collateral valuation of £1.6 m against a £1 m loan gives a 60% cushion on the security value.
+- Sixteen years of trading history demonstrates established operating experience.
+- Financial covenants (minimum DSCR 1.25x, maximum net debt/EBITDA 3.0x) are documented and stricter than policy thresholds.","Stonebridge Garden Centres Ltd seeks a £1 m secured loan with an eight‑year tenor. The transaction is well‑collateralised (62.5% LTV) and supported by strong cash‑flow metrics (DSCR 1.55x, net debt/EBITDA 2.0x). While the security is concentrated in a single property and no personal guarantee is provided, the borrower’s long trading history and robust covenant package mitigate these risks. Overall the risk profile is low, and the loan can be approved under the bank’s policy.",PASS,None,"
+Agent highlighted genuine strengths: DSCR of 1.55 (above 1.25), LTV of 62.5% (below 75%), net debt/EBITDA of 2.0 (below 3.5), and 16 years of trading history. No rules failed, so key_risks was complete. No mitigants were missed or incorrectly included."
+C27,none,"audited_accounts_provided: True
+borrower_name: Mercia Office Interiors Ltd
+collateral_description: First legal charge over the warehouse, Coventry
+collateral_valuation: 2100000.0
+company_number: 16004126
+dscr: 1.46
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+kyc_complete: True
+loan_amount: 1400000.0
+ltv_percent: 66.7
+net_debt_to_ebitda: 2.5
+personal_guarantee: False
+reference: CR-2026-0326
+sector: Construction (office fit-out)
+tenor_years: 8.0
+years_trading: 11.0","R1 [PASS] Loan-to-value must not exceed 75%: 66.7
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.46
+R3 [PASS] Tenor must not exceed 10 years: 8.0
+R4 [FAIL] Personal guarantee required for loans above £1,000,000: Guarantee offered: No on a £1,400,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 11.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.5
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Construction (office fit-out)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company found (16004126), status Active, registered name matches borrower, and years since incorporation (11.4) exceeds stated trading years (11.0) by less than 1 year.",Medium,Refer,"- Personal guarantee required for loans above £1,000,000 is missing, breaching policy R4.","- First legal charge over a warehouse in Coventry valued at £2,100,000 provides comfortable LTV headroom at 66.7%.
+- Debt service coverage ratio of 1.46 exceeds the minimum 1.25x, indicating strong cash‑flow coverage.
+- Net debt to EBITDA of 2.5x is well below the policy maximum of 3.0x, showing low leverage.
+- Borrower has 11 years of trading history and audited accounts, confirming established operations and reliable financial reporting.","The loan is well‑secured with a first legal charge over a £2.1m warehouse, giving comfortable LTV headroom, and the borrower demonstrates strong cash‑flow coverage (DSCR 1.46) and low leverage (net debt/EBITDA 2.5x). The company also has a long trading history and audited accounts. However, the absence of a personal guarantee breaches the policy requirement for loans above £1m, representing a medium‑risk gap. Accordingly, the deal should be referred for further review.",PASS,R4 (Personal guarantee missing for >£1m loan),"Agent correctly highlighted the missing personal guarantee failure for a £1.4m loan. Mitigants were genuine strengths: DSCR of 1.46 (above 1.25), LTV of 66.7% (below 75%), net debt/EBITDA of 2.5 (below 3.5), and 11 years of trading history. No contradictions or misstatements. Nothing was missed."
+C33,Must not cite six years of trading as a mitigant: the registry disproved it.,"audited_accounts_provided: True
+borrower_name: Oakfield Logistics Ltd
+collateral_description: First legal charge over the freehold warehouse, Unit 9 Kembrey Park, Swindon
+collateral_valuation: 1450000.0
+company_number: 15234567
+dscr: 1.55
+financial_covenants: Minimum DSCR of 1.30x tested annually; maximum net debt/EBITDA of 3.0x
+kyc_complete: True
+loan_amount: 900000.0
+ltv_percent: 62.1
+net_debt_to_ebitda: 2.1
+personal_guarantee: False
+reference: CR-2026-0219
+sector: Logistics (regional freight and warehousing)
+tenor_years: 6.0
+years_trading: 6.0","R1 [PASS] Loan-to-value must not exceed 75%: 62.1
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.55
+R3 [PASS] Tenor must not exceed 10 years: 6.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Not required for a £900,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 6.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.1
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.30x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both the DSCR (1.30x) and net debt/EBITDA (3.0x) covenants meet or exceed the policy thresholds.)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Logistics (regional freight and warehousing)
+R10 [FAIL] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Stated years of trading 6.0 exceeds the 1.5 years since incorporation by more than 1 year, per the registry record.",High,Decline,"- Borrower registry mismatch: the years of trading reported (6.0) exceed the period since incorporation according to the Companies House record, indicating a potential misstatement of trading history.","- LTV of 62.1% provides comfortable headroom below the 75% policy limit.
+- DSCR of 1.55x offers strong cash‑flow coverage above the 1.30x covenant.
+- Net debt/EBITDA of 2.1x gives ample cushion below the 3.0x covenant.
+- First legal charge over a freehold warehouse valued at £1.45m provides approximately 1.6x coverage of the £900k loan.","The loan meets all financial and policy covenants, with strong headroom on LTV, DSCR and net debt/EBITDA, and is secured by a well‑valued warehouse. However, a high‑severity compliance failure shows a mismatch between the borrower’s reported trading history and the Companies House record, raising concerns about the accuracy of the information provided. Given this breach, the overall risk is assessed as High and the recommendation is to decline the facility.",PASS,R10 (Registry mismatch on trading history),"Agent correctly highlighted the registry mismatch failure: borrower claimed 6 years of trading but Companies House showed only 1.5 years. Other mitigants (DSCR 1.55, LTV 62.1%, net debt/EBITDA 2.1) were genuine strengths."
+C37,Must flag thin headroom as a risk and not rate the deal Low; must not list 'rules passed' as mitigants.,"audited_accounts_provided: True
+borrower_name: Seaview Boutique Hotels Ltd
+collateral_description: First legal charge over the hotel, St Ives
+collateral_valuation: 1550000.0
+company_number: 16004144
+dscr: 1.27
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+guarantee_details: Megan Shaw, limited to 150000
+kyc_complete: True
+loan_amount: 1150000.0
+ltv_percent: 74.2
+net_debt_to_ebitda: 3.4
+personal_guarantee: True
+reference: CR-2026-0344
+sector: Hospitality (boutique hotels)
+tenor_years: 9.0
+years_trading: 3.0","R1 [PASS] Loan-to-value must not exceed 75%: 74.2
+R2 [PASS] Debt service coverage ratio must be at least 1.25x: 1.27
+R3 [PASS] Tenor must not exceed 10 years: 9.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Guarantee offered: Yes on a £1,150,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 3.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 3.4
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Hospitality (boutique hotels)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company found (16004144), status Active, name matches Seaview Boutique Hotels Ltd, and stated trading years 3.0 are within 1 year of the 3.4 years since incorporation.",Medium,Approve,"- The personal guarantee is limited to £150,000, representing only ~13% of the £1.15 m loan, leaving the bank exposed to the remainder of the exposure.
+- Financial covenants provide thin headroom – LTV is 74.2% (just 0.8 ppt below the 75% limit) and DSCR is 1.27 (only 0.02 above the 1.25 minimum), increasing sensitivity to adverse cash‑flow shocks.
+- The borrower operates in the boutique‑hotel segment of hospitality, a sector that can be cyclical and is not diversified across multiple properties, concentrating risk in a single asset class and location.","- LTV of 74.2% is comfortably below the 75% policy ceiling, providing a modest cushion against valuation declines.
+- DSCR of 1.27 exceeds the required 1.25x, indicating sufficient cash‑flow coverage under current assumptions.
+- The first legal charge secures the loan against a property valued at £1.55 m, giving a collateral coverage of roughly 135% of the loan amount.
+- The borrower has three years of trading history, meeting the minimum 2‑year requirement and demonstrating an established operating track record.
+- KYC is complete and audited accounts have been provided, confirming the borrower’s identity and financial reporting integrity.",FAIL,FAIL,Genuine Mitigant not provided,"Agent correctly highlighted thin headroom (LTV 74.2% vs 75% limit and DSCR 1.27 vs 1.25 minimum) and small personal guarantee (£150k on a £1.15m loan). However, mitigants included entry requirements (KYC complete, audited accounts) which are not genuine strengths, and also included thin-headroom ratios as strengths, which violates the case-specific instruction not to list rules passed as mitigants. Therefore mitigants were not correctly provided."
+C39,none,"audited_accounts_provided: True
+borrower_name: Brookfield Trading Ltd
+collateral_description: First legal charge over the warehouse, Doncaster
+collateral_valuation: 1530000.0
+company_number: 16004151
+dscr: 1.18
+financial_covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+guarantee_details: Simon Brook, limited to £250,000
+kyc_complete: True
+loan_amount: 1300000.0
+ltv_percent: 85.0
+net_debt_to_ebitda: 2.9
+personal_guarantee: True
+reference: CR-2026-0351
+sector: Wholesale (building materials)
+tenor_years: 8.0
+years_trading: 7.0","R1 [FAIL] Loan-to-value must not exceed 75%: 85.0
+R2 [FAIL] Debt service coverage ratio must be at least 1.25x: 1.18
+R3 [PASS] Tenor must not exceed 10 years: 8.0
+R4 [PASS] Personal guarantee required for loans above £1,000,000: Guarantee offered: Yes on a £1,300,000 loan
+R5 [PASS] Borrower must have at least 2 years of trading history: 7.0
+R6 [PASS] Net debt/EBITDA must not exceed 3.5x: 2.9
+R7 [PASS] Financial covenants must be agreed, documented and no weaker than policy thresholds: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x (AI review: Both covenants meet or exceed policy thresholds (DSCR 1.25x ≥ 1.25x and net debt/EBITDA 3.0x ≤ 3.5x).)
+R8 [PASS] KYC must be complete and audited accounts provided: KYC complete: True; audited accounts: True
+R9 [PASS] Borrower sector must not be on the excluded list: Wholesale (building materials)
+R10 [PASS] Borrower must match the company registry: active, same name, and trading history consistent with incorporation date: Registry check: Company 16004151 is Active, name matches Brookfield Trading Ltd, and stated trading years 7.0 are within 1 year of the 7.4 years since incorporation.",High,Decline,"- Loan-to-value of 85% exceeds the policy maximum of 75% (R1).
+- Debt service coverage ratio of 1.18 falls short of the required minimum of 1.25x (R2).","- Net debt to EBITDA of 2.9x is comfortably below the policy ceiling of 3.5x, indicating manageable leverage.
+- The warehouse collateral is valued at £1,530,000, providing a cushion above the £1,300,000 loan amount despite the high LTV.
+- A personal guarantee is in place, albeit limited to £250,000, offering additional recourse.","Brookfield Trading Ltd seeks a £1.3m secured loan with an 8‑year tenor. The loan is secured by a first legal charge over a warehouse in Doncaster valued at £1.53m, but the resulting LTV of 85% breaches the 75% policy limit. The borrower’s DSCR of 1.18 also falls short of the required 1.25x, representing a material shortfall in cash‑flow coverage. While leverage metrics and the presence of a partial personal guarantee provide some mitigation, the high‑severity breaches result in a High risk rating and the recommendation is to decline the facility.",PASS,"R1 (LTV > 75%), R2 (DSCR < 1.25x)","Agent correctly highlighted both failed rules: LTV of 85% (above the 75% limit) and DSCR of 1.18 (below the 1.25 minimum). Mitigants were genuine strengths: net debt/EBITDA of 2.9 (below 3.5), collateral value of £1.53m, and presence of a personal guarantee. No contradictions or misstatements. Nothing was missed."

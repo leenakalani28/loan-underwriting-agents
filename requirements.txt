@@ -4,3 +4,6 @@ langgraph
 pydantic
 python-dotenv
 streamlit
+langsmith
+langchain-anthropic
+langchain-openai

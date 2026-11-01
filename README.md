@@ -21,6 +21,7 @@ Built with **LangGraph**, **LangChain** and the **Groq API**, with a **Streamlit
 - [Sample deals and outputs](#sample-deals-and-outputs)
 - [Getting started](#getting-started)
 - [Project structure](#project-structure)
+- [Evaluation (Week 4)](#evaluation-week-4)
 - [Lessons learned](#lessons-learned)
 - [Production considerations](#production-considerations)
 - [Known limitations](#known-limitations)
@@ -332,18 +333,68 @@ loan-underwriting-agents/
 │   ├── deal_c_incomplete.txt
 │   ├── deal_d_registry_mismatch.txt
 │   ├── company_registry.json  # Mock company registry used by the tool
-│   └── lending_policy.json
+│   └── lending_policy.json  # v1.1: LTV recalculation and sector synonyms
+├── evals/
+│   ├── cases/               # 40 golden-dataset applications (C01-C40)
+│   ├── expected.json        # Answer key, dataset v1 (expert-reviewed)
+│   ├── upload_dataset.py    # Creates the LangSmith dataset and tags v1
+│   ├── evaluators.py        # 8 evaluators incl. the LLM judge
+│   ├── run_evals.py         # Runs and scores the dataset in LangSmith
+│   ├── calibration_sheet.py # Blind human scoring sheet for the judge
+│   ├── rescore.py           # Re-judges a saved experiment
+│   ├── merge_results.py     # Merges re-runs into one result set
+│   └── results/             # Case-level CSVs and summaries per run
 ├── outputs/                 # Generated reports and decision records
 ├── .streamlit/config.toml   # Streamlit base theme
 ├── app.py                   # Streamlit portal
 ├── graph.py                 # Builds and compiles the LangGraph
 ├── state.py                 # DealState and audit log helper
 ├── models.py                # Pydantic contracts between agents
-├── llm.py                   # Shared Groq model
+├── llm.py                   # Model provider: Groq, Cerebras or Fireworks
 ├── report.py                # Markdown report and JSON record
 ├── run_pipeline.py          # Command-line version
 └── requirements.txt
 ```
+
+---
+
+## Evaluation (Week 4)
+
+The pipeline was evaluated with **LangSmith** on a golden dataset of **40 labelled loan applications** (20 happy path, 12 edge cases, 6 known failures, 2 adversarial), reviewed case by case by a credit expert and stored as the LangSmith dataset `sme-loan-golden` (v1).
+
+**How it is scored**
+- **Code-based evaluators:** decision accuracy, high-severity and overall breach recall, false alarms, extraction accuracy, completion, latency and cost per application.
+- **Trajectory check:** right route (full review or short-circuit), and the registry tool called when expected.
+- **LLM-as-judge:** Claude Sonnet 5.5 (a different model family from the agent) scores the risk narrative on five criteria: coverage, grounding, genuine mitigants, accurate security and a case-specific check.
+- **Human calibration:** the credit expert scored 10 narratives blind; the judge agreed on 6 of 10 and was stricter than the human in every disagreement.
+
+**Results: baseline vs improved**
+
+| Metric | Pass bar | Baseline | Improved |
+|---|---|---|---|
+| Decision accuracy | 95% | 87.5% | **97.5%** |
+| High-severity breach recall | 100% | 83.3% | **100%** |
+| Breach recall | 95% | 88.9% | **100%** |
+| Completed without error | 100% | 90.0% | **100%** |
+| Narrative faithfulness | 90% | 28.1% | **61.1%** |
+| No false alarms | 95% | 100% | 97.3% |
+| Average cost per application | $0.01 | $0.0015 | $0.0017 |
+
+**What changed (four targeted fixes)**
+1. **Risk agent mitigant rules plus a code filter:** stops entry requirements (KYC, audited accounts, covenants at policy) being presented as strengths, and logs each removal.
+2. **Retry and safe fallback:** an incomplete model answer is retried once; if it still fails, the case goes to the officer as Refer instead of crashing.
+3. **LTV recalculated in code:** R1 tests the higher of the stated LTV and loan ÷ valuation, catching a misstated LTV.
+4. **Excluded-sector synonyms:** R9 now catches "casino", "betting" and similar as gambling.
+
+**Still open:** the narrative is below its 90% bar, mainly because the improved prompt led the agent to invent a "5-year minimum" for trading history; the registry name match ("Limited" vs "Ltd") should move into code. The full report and scored spreadsheet are submitted with the Week 4 project.
+
+**Run it**
+```bash
+python evals/upload_dataset.py                    # once: create the LangSmith dataset
+python evals/run_evals.py --label baseline        # score all 40 cases
+python evals/run_evals.py --label smoke --cases C01 C33   # quick check on two cases
+```
+Set `LANGSMITH_*`, `JUDGE_MODEL` and `ANTHROPIC_API_KEY` in `.env` (never committed). `LLM_PROVIDER` chooses the host for gpt-oss-120b (`groq`, `cerebras` or `fireworks`).
 
 ---
 
@@ -392,7 +443,8 @@ loan-underwriting-agents/
 |---|---|
 | Orchestration | LangGraph (`StateGraph`, conditional edges, `interrupt`, `MemorySaver`) |
 | LLM framework | LangChain (`ChatPromptTemplate`, `with_structured_output`, `@tool`, `bind_tools`) |
-| Model | Groq API (`openai/gpt-oss-120b`) |
+| Model | `gpt-oss-120b` via Groq, Cerebras or Fireworks |
+| Evaluation | LangSmith datasets and experiments; Claude Sonnet 5.5 as LLM judge |
 | Data contracts | Pydantic |
 | Front end | Streamlit |
 

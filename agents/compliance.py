@@ -1,5 +1,6 @@
 import json
 import operator
+import re
 from typing import Literal
 
 from pydantic import BaseModel
@@ -13,6 +14,17 @@ from agents.tools import lookup_company
 
 # Python's built-in comparison functions, looked up by the symbol used in the policy file
 COMPARISONS = {"<=": operator.le, ">=": operator.ge}
+LLM_ATTEMPTS = 2  # ask the model again if it returns a badly formatted answer
+
+
+def invoke_with_retry(runnable, inputs):
+    """Calls an LLM step, trying again if the answer is badly formatted. Returns None if every attempt fails."""
+    for _ in range(LLM_ATTEMPTS):
+        try:
+            return runnable.invoke(inputs)
+        except Exception:
+            continue
+    return None
 
 
 def make_result(rule: dict, status: str, actual: str) -> RuleResult:
@@ -33,6 +45,9 @@ def check_rule(rule: dict, terms: dict, policy: dict) -> RuleResult:
 
     # Simple number comparisons: R1, R2, R3, R5, R6
     if kind in COMPARISONS:
+        # R1: don't trust the stated LTV alone, recalculate it from the loan and the valuation
+        if rule.get("recalculate_from"):
+            return check_recalculated(rule, terms, value)
         if value is None:
             return make_result(rule, "UNABLE_TO_VERIFY", "Not stated in application")
         passed = COMPARISONS[kind](value, rule["threshold"])
@@ -59,14 +74,40 @@ def check_rule(rule: dict, terms: dict, policy: dict) -> RuleResult:
         return make_result(rule, "PASS" if (kyc and accounts) else "FAIL",
                            f"KYC complete: {kyc}; audited accounts: {accounts}")
 
-    # Sector not on the excluded list: R9
+    # Sector not on the excluded list, including other words for the same sector: R9
     if kind == "not_in_excluded":
         if value is None:
             return make_result(rule, "UNABLE_TO_VERIFY", "Sector not stated")
-        hits = [s for s in policy["excluded_sectors"] if s in value.lower()]
-        return make_result(rule, "FAIL" if hits else "PASS", value)
+        sector = value.lower()
+        synonyms = policy.get("excluded_sector_synonyms", {})
+        hits = []
+        for excluded in policy["excluded_sectors"]:
+            words = [excluded] + synonyms.get(excluded, [])
+            if any(re.search(rf"\b{re.escape(w)}\b", sector) for w in words):
+                hits.append(excluded)
+        if hits:
+            return make_result(rule, "FAIL", f"{value} (excluded sector: {', '.join(hits)})")
+        return make_result(rule, "PASS", value)
 
     raise ValueError(f"Unknown rule operator: {kind}")
+
+
+def check_recalculated(rule: dict, terms: dict, stated) -> RuleResult:
+    """R1: recalculates the ratio from its parts and tests the higher (more cautious) of stated and calculated."""
+    top, bottom = (terms.get(f) for f in rule["recalculate_from"])
+    calculated = round(top / bottom * 100, 1) if top and bottom else None
+    if stated is None and calculated is None:
+        return make_result(rule, "UNABLE_TO_VERIFY", "Not stated and cannot be calculated")
+    tested = max(v for v in (stated, calculated) if v is not None)
+    passed = COMPARISONS[rule["operator"]](tested, rule["threshold"])
+    if calculated is None:
+        actual = f"{stated} (stated; could not recalculate)"
+    elif stated is None or abs(stated - calculated) <= 1:
+        actual = str(calculated if stated is None else stated)
+    else:
+        actual = (f"Stated {stated}% but calculated {calculated}% "
+                  f"(£{top:,.0f} loan / £{bottom:,.0f} valuation); tested {tested}%")
+    return make_result(rule, "PASS" if passed else "FAIL", actual)
 
 
 # ---------- Part 2: covenant review (LLM judgement): R7 ----------
@@ -92,7 +133,9 @@ def review_covenants(rule: dict, terms: dict) -> RuleResult:
         return make_result(rule, "FAIL", "No financial covenants agreed")
 
     llm = get_llm().with_structured_output(CovenantReview)
-    review = (COVENANT_PROMPT | llm).invoke({"covenants": covenants})
+    review = invoke_with_retry(COVENANT_PROMPT | llm, {"covenants": covenants})
+    if review is None:
+        return make_result(rule, "UNABLE_TO_VERIFY", f"{covenants} (AI covenant review failed; manual review needed)")
     return make_result(rule, review.status, f"{covenants} (AI review: {review.reason})")
 
 
@@ -140,8 +183,8 @@ def review_registry(rule: dict, terms: dict) -> tuple[RuleResult, list]:
     log_lines = []
 
     # Stage 1: the LLM decides to call the tool
-    response = get_llm().bind_tools([lookup_company]).invoke(messages)
-    if not response.tool_calls:
+    response = invoke_with_retry(get_llm().bind_tools([lookup_company]), messages)
+    if response is None or not response.tool_calls:
         # No lookup means no verification, so the rule cannot pass
         log_lines.append(log_entry("Compliance checker", "No registry lookup made"))
         return make_result(rule, "UNABLE_TO_VERIFY", "Registry lookup was not performed"), log_lines
@@ -163,7 +206,12 @@ def review_registry(rule: dict, terms: dict) -> tuple[RuleResult, list]:
         f"{json.dumps(tool_results, indent=2)}\n\n"
         "Now give your PASS or FAIL decision and a one-sentence reason."
     )))
-    review = get_llm().with_structured_output(RegistryReview).invoke(messages)
+    review = invoke_with_retry(get_llm().with_structured_output(RegistryReview), messages)
+    if review is None:
+        log_lines.append(log_entry("Compliance checker", "Registry judgement failed after retries"))
+        return make_result(rule, "UNABLE_TO_VERIFY",
+                           f"Registry record retrieved ({describe_registry_result(tool_results[0])}) "
+                           "but the AI judgement failed; manual check needed"), log_lines
     return make_result(rule, review.status, f"Registry check: {review.reason}"), log_lines
 
 

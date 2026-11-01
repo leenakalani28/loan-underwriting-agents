@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0329
+
+1. BORROWER DETAILS
+Borrower: Albion Joinery Ltd
+Company number: 16004129
+Sector: Construction (joinery)
+Years trading: 9
+Directors: Ben Archer (MD)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £420,000
+Purpose: Joinery workshop purchase
+Tenor: 6 years
+Interest rate: SONIA + 3.50%
+Repayment: Monthly capital and interest
+Personal guarantee: None offered
+Financial covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+
+3. COLLATERAL
+Security: First legal charge over the workshop, Ipswich
+Independent valuation: £700,000 (Cluttons, September 2026)
+Loan-to-value: 60.0%
+
+4. FINANCIALS
+Turnover (FY2025): £1,617,000
+EBITDA (FY2025): £231,000
+Cash flow available for debt service: £120,000
+Annual debt service (proposed facility): £76,000
+Debt service coverage ratio: 1.58x
+Net debt/EBITDA after drawdown: 1.9x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, all directors verified
+Audited accounts: Provided for FY2023, FY2024, FY2025
+Management accounts: Provided to September 2026

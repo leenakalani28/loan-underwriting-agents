@@ -1,0 +1,37 @@
+SME LOAN APPLICATION – CREDIT SUBMISSION
+Reference: CR-2026-0330
+
+1. BORROWER DETAILS
+Borrower: Northwind Telecoms Ltd
+Company number: 19999999
+Sector: Telecommunications (business broadband)
+Years trading: 5
+Directors: Lewis Shaw (MD)
+
+2. LOAN TERMS
+Facility type: Secured term loan
+Loan amount: £550,000
+Purpose: Network operations centre purchase
+Tenor: 6 years
+Interest rate: SONIA + 3.50%
+Repayment: Monthly capital and interest
+Personal guarantee: None offered
+Financial covenants: Minimum DSCR of 1.25x tested annually; maximum net debt/EBITDA of 3.0x
+
+3. COLLATERAL
+Security: First legal charge over the operations centre, Preston
+Independent valuation: £900,000 (Lambert Smith Hampton, September 2026)
+Loan-to-value: 61.1%
+
+4. FINANCIALS
+Turnover (FY2025): £2,114,000
+EBITDA (FY2025): £302,000
+Cash flow available for debt service: £159,500
+Annual debt service (proposed facility): £99,000
+Debt service coverage ratio: 1.61x
+Net debt/EBITDA after drawdown: 2.0x
+
+5. KYC AND DOCUMENTATION
+KYC checks: Complete, all directors verified
+Audited accounts: Provided for FY2023, FY2024, FY2025
+Management accounts: Provided to September 2026

@@ -1,0 +1,15 @@
+{
+  "decision_accuracy": 1.0,
+  "high_severity_recall": 1.0,
+  "breach_recall": 1.0,
+  "trajectory_correct": 1.0,
+  "narrative_faithfulness": 0.0,
+  "no_false_alarms": 1.0,
+  "extraction_accuracy": 1.0,
+  "no_error": 1.0,
+  "p50_latency_s": 8.44,
+  "p95_latency_s": 8.827,
+  "avg_cost_usd": 0.001613,
+  "max_cost_usd": 0.001636,
+  "avg_tokens": 5302
+}

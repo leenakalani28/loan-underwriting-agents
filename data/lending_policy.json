@@ -1,5 +1,5 @@
 {
-  "policy_name": "SME Secured Lending Policy v1.0",
+  "policy_name": "SME Secured Lending Policy v1.1",
   "required_sections": [
     "BORROWER DETAILS",
     "LOAN TERMS",
@@ -8,8 +8,14 @@
     "KYC AND DOCUMENTATION"
   ],
   "excluded_sectors": ["gambling", "weapons", "adult entertainment", "cryptocurrency"],
+  "excluded_sector_synonyms": {
+    "gambling": ["casino", "betting", "bookmaker", "bookmaking", "gaming venue", "gaming machines", "slot machines", "bingo", "lottery"],
+    "weapons": ["firearms", "ammunition", "munitions", "arms manufacturing", "arms dealing"],
+    "adult entertainment": ["strip club", "lap dancing", "adult content"],
+    "cryptocurrency": ["crypto", "bitcoin", "digital currency exchange"]
+  },
   "rules": [
-    {"id": "R1", "description": "Loan-to-value must not exceed 75%", "field": "ltv_percent", "operator": "<=", "threshold": 75, "severity": "high"},
+    {"id": "R1", "description": "Loan-to-value must not exceed 75%", "field": "ltv_percent", "operator": "<=", "threshold": 75, "severity": "high", "recalculate_from": ["loan_amount", "collateral_valuation"]},
     {"id": "R2", "description": "Debt service coverage ratio must be at least 1.25x", "field": "dscr", "operator": ">=", "threshold": 1.25, "severity": "high"},
     {"id": "R3", "description": "Tenor must not exceed 10 years", "field": "tenor_years", "operator": "<=", "threshold": 10, "severity": "medium"},
     {"id": "R4", "description": "Personal guarantee required for loans above £1,000,000", "field": "personal_guarantee", "operator": "required_if_amount_above", "threshold": 1000000, "severity": "medium"},
